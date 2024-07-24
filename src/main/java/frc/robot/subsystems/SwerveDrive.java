@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.robot.modules.SwerveModule;
 import frc.robot.utils.PID;
-import frc.robot.utils.Sensors;
+import frc.robot.sensors.Gyro;
 import frc.robot.utils.Tools;
 import frc.robot.Constants;
 
@@ -136,8 +136,8 @@ public class SwerveDrive extends SubsystemBase{
    * @return robot heading (0 =< value < 360 degrees)
    */
   public static void getRobotHeading() {
-    if(Sensors.gyro.isInitialized()){
-      robotHeading = Sensors.gyro.getVector()[0];
+    if(Gyro.isInitialized()){
+      robotHeading = Gyro.getVector();
     }
     else{
       robotHeading = driverHeading;
