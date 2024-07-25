@@ -55,7 +55,7 @@ public class SwerveDrive extends SubsystemBase{
    * @param y : vector y force (driver heading)
    * @param turn : turn force
    */
-  public static void move(double x, double y, double turn) {
+  public void move(double x, double y, double turn) {
     if(x == 0 && y == 0 && turn == 0){//doesn't move
       lf.coastMove();
       lr.coastMove();
@@ -123,7 +123,7 @@ public class SwerveDrive extends SubsystemBase{
   /**
    * Get turnmotor encoder value.
    */
-  public static void getEncValue() {
+  public void getEncValue() {
     lf.getEncValue();
     lr.getEncValue();
     rf.getEncValue();
@@ -135,7 +135,7 @@ public class SwerveDrive extends SubsystemBase{
    * 
    * @return robot heading (0 =< value < 360 degrees)
    */
-  public static void getRobotHeading() {
+  public void getRobotHeading() {
     if(Gyro.isInitialized()){
       robotHeading = Gyro.getVector();
     }
@@ -152,7 +152,7 @@ public class SwerveDrive extends SubsystemBase{
    * 
    * @return a vector {x, y} (robot heading)
    */
-  private static double[] convertHeading(double x, double y) {
+  private double[] convertHeading(double x, double y) {
     return Tools.toVector(
       Math.sqrt(x*x + y*y),
       Tools.toDegrees(x, y) - (robotHeading - driverHeading)

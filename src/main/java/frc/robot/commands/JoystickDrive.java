@@ -24,6 +24,6 @@ public class JoystickDrive extends Command{
   
   @Override
   public void execute() {
-    SwerveDrive.move(m_x.get(), m_y.get(), m_turn.get());
+    m_swerve.move(m_x.get(), m_y.get(), m_turn.get());
   }
 }
