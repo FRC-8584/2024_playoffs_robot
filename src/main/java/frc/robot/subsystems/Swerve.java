@@ -3,12 +3,11 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.robot.modules.SwerveModule;
-
-import frc.robot.sensors.Gyro;
 import frc.robot.utils.Tools;
 import frc.robot.Constants;
+import frc.robot.devices.Gyro;
 
-public class SwerveDrive extends SubsystemBase{
+public class Swerve extends SubsystemBase{
   /**********swerve motor modules**********/
 
 	public static final SwerveModule lf = new SwerveModule(1, 5);
@@ -27,7 +26,7 @@ public class SwerveDrive extends SubsystemBase{
 
   /**********functions**********/
 
-  public SwerveDrive(){
+  public Swerve(){
     lf.setName("Left_front");
     lr.setName("Left_rear");
     rf.setName("Right_front");
