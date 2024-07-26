@@ -14,7 +14,7 @@ public class SwerveModule {
 	public final TalonSRX turningMotor;
 	public final CANSparkMax driveMotor;
 
-	public String name = "";
+	private String name = "";
 
 	private PID pid;
 
@@ -79,6 +79,10 @@ public class SwerveModule {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getName() {
+		return name;
 	}
 
 	//get encoder value
