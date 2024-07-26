@@ -1,11 +1,9 @@
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.FeedbackDevice;
-
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.robot.modules.SwerveModule;
-import frc.robot.utils.PID;
+
 import frc.robot.sensors.Gyro;
 import frc.robot.utils.Tools;
 import frc.robot.Constants;
@@ -30,20 +28,15 @@ public class SwerveDrive extends SubsystemBase{
   /**********functions**********/
 
   public SwerveDrive(){
-    lf.turningMotor.configSelectedFeedbackSensor(FeedbackDevice.Analog);
-    lr.turningMotor.configSelectedFeedbackSensor(FeedbackDevice.Analog);
-    rf.turningMotor.configSelectedFeedbackSensor(FeedbackDevice.Analog);
-    rr.turningMotor.configSelectedFeedbackSensor(FeedbackDevice.Analog);
+    lf.setName("Left_front");
+    lr.setName("Left_rear");
+    rf.setName("Right_front");
+    rr.setName("Right_rear");
 
-    lf.name = "Left_front";
-    lr.name = "Left_rear";
-    rf.name = "Right_front";
-    rr.name = "Right_rear";
-
-    lf.pid = new PID(1, 1e-3, 0);
-    lr.pid = new PID(1, 1e-3, 0);
-    rf.pid = new PID(1, 1e-3, 0);
-    rr.pid = new PID(1, 1e-3, 0);
+    lf.setPID(1, 1e-3, 0);
+    lr.setPID(1, 1e-3, 0);
+    rf.setPID(1, 1e-3, 0);
+    rr.setPID(1, 1e-3, 0);
 
     move(0, 0, 0);
   }

@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.utils.PID;
 import frc.robot.utils.Tools;
 
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.TalonSRXControlMode;
 import com.ctre.phoenix.motorcontrol.can.*;
 
@@ -15,7 +16,7 @@ public class SwerveModule {
 
 	public String name = "";
 
-	public PID pid;
+	private PID pid;
 
 	private double turnValue;
 	private double lastAngle;
@@ -26,6 +27,7 @@ public class SwerveModule {
 	public SwerveModule(int turningMotorID, int driveMotorID){
 		turningMotor = new TalonSRX(turningMotorID);
 		driveMotor = new CANSparkMax(driveMotorID, CANSparkLowLevel.MotorType.kBrushed);
+		turningMotor.configSelectedFeedbackSensor(FeedbackDevice.Analog);
 	}
 
 	//set motor power
@@ -68,6 +70,15 @@ public class SwerveModule {
 
 		turningMotor.set(TalonSRXControlMode.PercentOutput, -turnPower);
 		driveMotor.set(0);
+	}
+
+	public void setPID(double kP, double kI, double kD) {
+		pid = new PID(kP, kI, kD);
+		pid.resetIntergral();
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	//get encoder value
