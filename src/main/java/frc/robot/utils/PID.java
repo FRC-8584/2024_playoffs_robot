@@ -41,7 +41,7 @@ public class PID {
 	}
 
 	public void resetIntergral() {
-		errorArray = new double[50];
+		errorArray = new double[50];// 1s
 		Integral = 0;
 
 		thisError = 0;

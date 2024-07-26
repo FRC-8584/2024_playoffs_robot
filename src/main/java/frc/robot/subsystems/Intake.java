@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Intake extends SubsystemBase {
-  private final CANSparkMax motor = new CANSparkMax(Constants.MotorControllerConstants.IntakeSparkID, MotorType.kBrushed);
+  private final CANSparkMax motor = new CANSparkMax(Constants.MotorControllerID.IntakeID, MotorType.kBrushed);
 
   public Intake() {
     

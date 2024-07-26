@@ -9,7 +9,7 @@ import frc.robot.utils.PID;
 
 public class Shaft extends SubsystemBase {
 
-  private final CANSparkMax motor = new CANSparkMax(Constants.MotorControllerConstants.ShaftSparkID, MotorType.kBrushless);
+  private final CANSparkMax motor = new CANSparkMax(Constants.MotorControllerID.ShaftID, MotorType.kBrushless);
   private final PID pid = new PID(1.0, 1e-2, 0);
 
   private double initEnc;

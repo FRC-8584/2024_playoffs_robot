@@ -5,11 +5,11 @@ import java.util.function.Supplier;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Swerve;
 
-public class JoystickDrive extends Command{
+public class JoystickSwerve extends Command{
   private Swerve m_swerve;
   private Supplier<Double> m_x, m_y, m_turn; 
 
-  public JoystickDrive(
+  public JoystickSwerve(
     Swerve swerve,
     Supplier<Double> x,
     Supplier<Double> y,

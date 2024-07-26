@@ -7,8 +7,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Shooter extends SubsystemBase {
-  private final CANSparkMax upMotor = new CANSparkMax(Constants.MotorControllerConstants.UpShooterSparkID, MotorType.kBrushed);
-  private final CANSparkMax downMotor = new CANSparkMax(Constants.MotorControllerConstants.UpShooterSparkID, MotorType.kBrushed);
+  private final CANSparkMax upMotor = new CANSparkMax(Constants.MotorControllerID.TopShooterID, MotorType.kBrushed);
+  private final CANSparkMax downMotor = new CANSparkMax(Constants.MotorControllerID.TopShooterID, MotorType.kBrushed);
 
   public Shooter() {
     upMotor.set(0);

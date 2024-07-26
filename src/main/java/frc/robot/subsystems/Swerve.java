@@ -3,6 +3,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.robot.modules.SwerveModule;
+import frc.robot.utils.PID;
 import frc.robot.utils.Tools;
 import frc.robot.Constants;
 import frc.robot.devices.Gyro;
@@ -10,34 +11,43 @@ import frc.robot.devices.Gyro;
 public class Swerve extends SubsystemBase{
   /**********swerve motor modules**********/
 
-	public static final SwerveModule lf = new SwerveModule(1, 5);
-  public static final SwerveModule lr = new SwerveModule(4, 8);
-  public static final SwerveModule rf = new SwerveModule(2, 6);
-  public static final SwerveModule rr = new SwerveModule(3, 7);
+	public final SwerveModule lf;
+  public final SwerveModule lr;
+  public final SwerveModule rf;
+  public final SwerveModule rr;
 
   /**********variables**********/
 
-  private static volatile double robotHeading;
-  private static double driverHeading = 0;
+  private double robotHeading;
+  private final double originRobotHeading;
+  private final double driverHeading = 0;
 
   /**********constants**********/
 
   private static final double r = Math.sqrt(Math.pow(Constants.kRobotLength ,2)+ Math.pow(Constants.kRobotWidth ,2));
+  private static final double a = Constants.kRobotLength / r, b = Constants.kRobotWidth / r;
 
   /**********functions**********/
 
-  public Swerve(){
+  public Swerve(final double originRobotHeading) {
+    lf = new SwerveModule(Constants.MotorControllerID.LF_TurnID, Constants.MotorControllerID.LF_DriveID, new PID(8, 1e-3, 0));
+    lr = new SwerveModule(Constants.MotorControllerID.LR_TurnID, Constants.MotorControllerID.LR_DriveID, new PID(8, 1e-3, 0));
+    rf = new SwerveModule(Constants.MotorControllerID.RF_TurnID, Constants.MotorControllerID.RF_DriveID, new PID(8, 1e-3, 0));
+    rr = new SwerveModule(Constants.MotorControllerID.RR_TurnID, Constants.MotorControllerID.RR_DriveID, new PID(8, 1e-3, 0));
+
     lf.setName("Left_front");
     lr.setName("Left_rear");
     rf.setName("Right_front");
     rr.setName("Right_rear");
 
-    lf.setPID(1, 1e-3, 0);
-    lr.setPID(1, 1e-3, 0);
-    rf.setPID(1, 1e-3, 0);
-    rr.setPID(1, 1e-3, 0);
+    this.originRobotHeading = originRobotHeading;
 
     move(0, 0, 0);
+  }
+
+  @Override
+  public void periodic() {
+    getRobotHeading();
   }
 
   /**
@@ -49,20 +59,20 @@ public class Swerve extends SubsystemBase{
    */
   public void move(double x, double y, double turn) {
     if(x == 0 && y == 0 && turn == 0){//doesn't move
-      lf.coastMove();
-      lr.coastMove();
-      rf.coastMove();
-      rr.coastMove();
+      lf.stop();
+      lr.stop();
+      rf.stop();
+      rr.stop();
 
       return;
     }
 
     //convert the vector of driver's heading to the vector of robot's heading
 
-    // final double tempVector[] = convertHeading(x, y);
+    final double tempVector[] = convertHeading(x, y);
 
-    // x = tempVector[0];
-    // y = tempVector[1];
+    x = tempVector[0];
+    y = tempVector[1];
 
     x *= Constants.OperatorConstants.kMove;
     y *= Constants.OperatorConstants.kMove;
@@ -70,10 +80,10 @@ public class Swerve extends SubsystemBase{
 
     //calculate vector (x, y)
 
-    final double lf_x = x + turn*(Constants.kRobotLength / r), lf_y = y + turn*(Constants.kRobotWidth / r);
-    final double lr_x = x - turn*(Constants.kRobotLength / r), lr_y = y + turn*(Constants.kRobotWidth / r);
-    final double rf_x = x + turn*(Constants.kRobotLength / r), rf_y = y - turn*(Constants.kRobotWidth / r);
-    final double rr_x = x - turn*(Constants.kRobotLength / r), rr_y = y - turn*(Constants.kRobotWidth / r);
+    final double lf_x = x + turn * a, lf_y = y + turn * b;
+    final double lr_x = x - turn * a, lr_y = y + turn * b;
+    final double rf_x = x + turn * a, rf_y = y - turn * b;
+    final double rr_x = x - turn * a, rr_y = y - turn * b;
 
     //calculate turn degrees
 
@@ -92,10 +102,10 @@ public class Swerve extends SubsystemBase{
     //bounding
 
     double max = 1;
-    if(lf_speed > max) max = lf_speed;
-    if(lr_speed > max) max = lr_speed;
-    if(rf_speed > max) max = rf_speed;
-    if(rr_speed > max) max = rr_speed;
+    max = lf_speed > max ? lf_speed : max;
+    max = lr_speed > max ? lr_speed : max;
+    max = rf_speed > max ? rf_speed : max;
+    max = rr_speed > max ? rr_speed : max;
 
     lf_speed /= max;
     lr_speed /= max;
@@ -113,23 +123,17 @@ public class Swerve extends SubsystemBase{
   }
 
   /**
-   * Get turnmotor encoder value.
-   */
-  public void getEncValue() {
-    lf.getEncValue();
-    lr.getEncValue();
-    rf.getEncValue();
-    rr.getEncValue();
-  }
-
-  /**
    * Get robot heading.
    * 
    * @return robot heading (0 =< value < 360 degrees)
    */
-  public void getRobotHeading() {
+  private void getRobotHeading() {
     if(Gyro.isInitialized()){
-      robotHeading = Gyro.getVector();
+      double temp = Gyro.getVector() + originRobotHeading;
+
+      if(temp >= 360) temp -= 360;
+
+      robotHeading = temp;
     }
     else{
       robotHeading = driverHeading;
