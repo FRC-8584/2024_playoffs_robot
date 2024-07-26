@@ -21,6 +21,7 @@ public final class Constants {
     public static final int ShaftSparkID = 2;
     public static final int UpShooterSparkID = 3;
     public static final int DownShooterSparkID = 4;
+    public static final int ClimberSparkID = 9;
 
     public static final int LF_DriveSparkID = 5;
     public static final int LR_DriveSparkID = 6;
