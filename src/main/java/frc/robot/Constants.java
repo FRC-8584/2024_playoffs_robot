@@ -6,10 +6,11 @@ public final class Constants {
   public static final double kRobotWidth = 1.0;
 
   public static class OperatorConstants {
-    public static final int kJoystickPort = 0;
+    public static final int Player1Port = 0;
 
     public static final double kMove = 1.0;
     public static final double kTrun = 1.0;
+    public static final double originRobotHeading = 0;
   }
 
   public static class MotorControllerID {

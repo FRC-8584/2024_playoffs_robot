@@ -19,7 +19,6 @@ public class Swerve extends SubsystemBase{
   /**********variables**********/
 
   private double robotHeading;
-  private final double originRobotHeading;
   private final double driverHeading = 0;
 
   /**********constants**********/
@@ -29,7 +28,7 @@ public class Swerve extends SubsystemBase{
 
   /**********functions**********/
 
-  public Swerve(final double originRobotHeading) {
+  public Swerve() {
     lf = new SwerveModule(Constants.MotorControllerID.LF_TurnID, Constants.MotorControllerID.LF_DriveID, new PID(8, 1e-3, 0));
     lr = new SwerveModule(Constants.MotorControllerID.LR_TurnID, Constants.MotorControllerID.LR_DriveID, new PID(8, 1e-3, 0));
     rf = new SwerveModule(Constants.MotorControllerID.RF_TurnID, Constants.MotorControllerID.RF_DriveID, new PID(8, 1e-3, 0));
@@ -39,8 +38,6 @@ public class Swerve extends SubsystemBase{
     lr.setName("Left_rear");
     rf.setName("Right_front");
     rr.setName("Right_rear");
-
-    this.originRobotHeading = originRobotHeading;
 
     move(0, 0, 0);
   }
@@ -129,7 +126,7 @@ public class Swerve extends SubsystemBase{
    */
   private void getRobotHeading() {
     if(Gyro.isInitialized()){
-      double temp = Gyro.getVector() + originRobotHeading;
+      double temp = Gyro.getVector() + Constants.OperatorConstants.originRobotHeading;
 
       if(temp >= 360) temp -= 360;
 
