@@ -1,4 +1,4 @@
-package frc.robot.sensors;
+package frc.robot.devices;
 
 import edu.wpi.first.wpilibj.I2C;
 import frc.robot.utils.BNO055;
