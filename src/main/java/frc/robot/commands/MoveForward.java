@@ -1,13 +1,13 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.SwerveDrive;
+import frc.robot.subsystems.Swerve;
 
 public class MoveForward extends Command{
-  private SwerveDrive m_swerve;
+  private Swerve m_swerve;
 
   public MoveForward(
-    SwerveDrive swerve)
+    Swerve swerve)
   {
     m_swerve = swerve;
     addRequirements(m_swerve);

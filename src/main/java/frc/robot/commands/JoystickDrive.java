@@ -3,14 +3,14 @@ package frc.robot.commands;
 import java.util.function.Supplier;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.SwerveDrive;
+import frc.robot.subsystems.Swerve;
 
 public class JoystickDrive extends Command{
-  private SwerveDrive m_swerve;
+  private Swerve m_swerve;
   private Supplier<Double> m_x, m_y, m_turn; 
 
   public JoystickDrive(
-    SwerveDrive swerve,
+    Swerve swerve,
     Supplier<Double> x,
     Supplier<Double> y,
     Supplier<Double> turn)
