@@ -10,7 +10,7 @@ public class Intake extends SubsystemBase {
   private final CANSparkMax motor = new CANSparkMax(Constants.MotorControllerConstants.IntakeSparkID, MotorType.kBrushed);
 
   public Intake() {
-
+    
   }
 
   public void in(){
