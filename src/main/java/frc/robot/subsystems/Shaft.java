@@ -6,7 +6,6 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.utils.PID;
-import frc.robot.utils.Tools;
 
 public class Shaft extends SubsystemBase {
 
@@ -19,13 +18,6 @@ public class Shaft extends SubsystemBase {
 
   public Shaft() {
     initEnc = motor.getEncoder().getPosition();
-  }
-
-  public void setAngle(double aimAngle) {
-    enc = motor.getEncoder().getPosition();
-    double aimEnc = aimAngle / 360.0 * 4096.0;
-    double power = Tools.bounding(pid.calculate(aimEnc - (enc - initEnc)), -1.0, 1.0);
-    motor.set(power);
   }
 
 }

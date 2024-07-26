@@ -18,7 +18,9 @@ public final class Constants {
 
   public static class MotorControllerConstants {
     public static final int IntakeSparkID = 1;
-    public static final int ShaftSparkID = 1;
+    public static final int ShaftSparkID = 2;
+    public static final int UpShooterSparkID = 3;
+    public static final int DownShooterSparkID = 4;
 
     public static final int LF_DriveSparkID = 5;
     public static final int LR_DriveSparkID = 6;
