@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commands.GetNote;
+
 import frc.robot.commands.JoystickSwerve;
 import frc.robot.devices.Gyro;
 import frc.robot.subsystems.Climber;
@@ -41,7 +41,6 @@ public class RobotContainer {
   }
 
   private void configureBindings() {
-    new JoystickButton(js1, 1).whileTrue(new GetNote(swerve, intake));
   }
 
   private void initialize(){
