@@ -7,6 +7,7 @@ public final class Constants {
 
   public static class OperatorConstants {
     public static final int Player1Port = 0;
+    public static final int Player2Port = 1;
 
     public static final double kMove = 1.0;
     public static final double kTrun = 1.0;

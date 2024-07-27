@@ -2,7 +2,6 @@ package frc.robot.modules;
 
 import com.revrobotics.*;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.utils.PID;
 import frc.robot.utils.Tools;
 
