@@ -11,10 +11,10 @@ import frc.robot.devices.Gyro;
 public class Swerve extends SubsystemBase{
   /**********swerve motor modules**********/
 
-	public final SwerveModule lf;
-  public final SwerveModule lr;
-  public final SwerveModule rf;
-  public final SwerveModule rr;
+	private final SwerveModule lf;
+  private final SwerveModule lr;
+  private final SwerveModule rf;
+  private final SwerveModule rr;
 
   /**********variables**********/
 
