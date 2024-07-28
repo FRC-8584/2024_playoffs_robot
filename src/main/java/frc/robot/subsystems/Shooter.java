@@ -15,8 +15,9 @@ public class Shooter extends SubsystemBase {
     downMotor.set(0);
   }
 
-  public void shoot(){
-    upMotor.set(Constants.MotorConstants.kShooterSpeed);
-    downMotor.set(-Constants.MotorConstants.kShooterSpeed);
+  public void shoot(double speed){
+    upMotor.set(Constants.MotorConstants.kShooterSpeed * speed);
+    downMotor.set(-Constants.MotorConstants.kShooterSpeed * speed);
   }
+
 }
