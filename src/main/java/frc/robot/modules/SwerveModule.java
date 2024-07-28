@@ -2,6 +2,7 @@ package frc.robot.modules;
 
 import com.revrobotics.*;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.utils.PID;
 import frc.robot.utils.Tools;
 
@@ -24,7 +25,7 @@ public class SwerveModule {
 		turningMotor = new TalonSRX(turningMotorID);
 		driveMotor = new CANSparkMax(driveMotorID, CANSparkLowLevel.MotorType.kBrushed);
 		this.pid = pid;
-		this.pid.setDeadband(0.15);
+		this.pid.setDeadband(0.01);
 
 		turningMotor.configSelectedFeedbackSensor(FeedbackDevice.Analog);
 	}
@@ -33,6 +34,7 @@ public class SwerveModule {
 		final double value = -((int)turningMotor.getSelectedSensorPosition() & 0x03ff) * 0.3515625;
 
 		turnValue = value < 0 ? value + 360 : value;
+		SmartDashboard.putNumber(name, turnValue);
 	}
 
 	/*** motor ***/

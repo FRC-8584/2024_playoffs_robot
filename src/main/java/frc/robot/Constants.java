@@ -9,8 +9,8 @@ public final class Constants {
     public static final int Player1Port = 0;
     public static final int Player2Port = 1;
 
-    public static final double kMove = 0.5;
-    public static final double kTrun = 0.5;
+    public static final double kMove = 1;
+    public static final double kTrun = 1;
     public static final double originRobotHeading = 0;
   }
 
