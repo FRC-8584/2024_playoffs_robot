@@ -19,5 +19,4 @@ public class Shooter extends SubsystemBase {
     upMotor.set(Constants.MotorConstants.kShooterSpeed);
     downMotor.set(-Constants.MotorConstants.kShooterSpeed);
   }
-
 }

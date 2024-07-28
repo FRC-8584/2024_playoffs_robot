@@ -19,5 +19,4 @@ public class Shaft extends SubsystemBase {
   public Shaft() {
     initEnc = motor.getEncoder().getPosition();
   }
-
 }

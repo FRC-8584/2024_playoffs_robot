@@ -5,21 +5,27 @@ public class PID {
 	private double ki;
 	private double kd;
 
-	private volatile double Integral;
-	private volatile double errorArray[];
+	private double Integral;
+	private double errorArray[];
+	private double deadband;
 
-	private volatile int thisError;
-	private volatile int lastError;
+	private int thisError;
+	private int lastError;
 
 	public PID(double _kp, double _ki, double _kd) {
 		kp = _kp;
 		ki = _ki;
 		kd = _kd;
 
+		deadband = 0;
 		resetIntergral();
 	}
 
-	public double calculate(double error) {
+	public double calculate(final double error) {
+		if(-deadband < error && error < deadband){
+			resetIntergral();
+			return 0;
+		}
 		thisError++;
 		if(thisError == 50) thisError = 0;
 
@@ -38,6 +44,10 @@ public class PID {
 		errorArray[thisError] = error;
 
 		return P + I + D;
+	}
+
+	public void setDeadband(final double deadband){
+		this.deadband = deadband;
 	}
 
 	public void resetIntergral() {

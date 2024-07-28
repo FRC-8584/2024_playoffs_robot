@@ -17,5 +17,4 @@ public class Turret {
   public Turret() {
     initEnc = motor.getEncoder().getPosition();
   }
-  
 }

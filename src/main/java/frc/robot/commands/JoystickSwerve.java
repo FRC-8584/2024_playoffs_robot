@@ -24,6 +24,6 @@ public class JoystickSwerve extends Command{
   
   @Override
   public void execute() {
-    m_swerve.move(m_x.get(), m_y.get(), m_turn.get());
+    m_swerve.move(m_x.get(), -m_y.get(), m_turn.get());
   }
 }

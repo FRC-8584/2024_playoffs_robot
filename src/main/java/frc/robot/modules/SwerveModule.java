@@ -24,23 +24,25 @@ public class SwerveModule {
 		turningMotor = new TalonSRX(turningMotorID);
 		driveMotor = new CANSparkMax(driveMotorID, CANSparkLowLevel.MotorType.kBrushed);
 		this.pid = pid;
+		this.pid.setDeadband(0.15);
 
 		turningMotor.configSelectedFeedbackSensor(FeedbackDevice.Analog);
+	}
+
+	public void update() {
+		final double value = -((int)turningMotor.getSelectedSensorPosition() & 0x03ff) * 0.3515625;
+
+		turnValue = value < 0 ? value + 360 : value;
 	}
 
 	/*** motor ***/
 
 	public void setpoint(double speed, double angle) {
-		getEncValue();
 		double error = angle - turnValue;//SP - PV 
 
 		error = error > 180 ? error - 360 : error;
 		error = error < -180 ? error + 360 : error;
 
-		if(-3 < error && error < 3){
-			pid.resetIntergral();
-			error = 0;
-		}
 		error /= 180.0;
 
 		final double turnPower = Tools.bounding(pid.calculate(error), -1, 1);
@@ -57,13 +59,8 @@ public class SwerveModule {
 
 	/*** encoder ***/
 
-	public void getEncValue() {
-		double turnValue = -((int)turningMotor.getSelectedSensorPosition() & 0x03ff) * 0.3515625;
-
-		turnValue = turnValue < 0 ? turnValue + 360 : turnValue;
-		turnValue = turnValue >= 360 ? turnValue - 360 : turnValue;
-
-		this.turnValue = turnValue;
+	public double getEncValue() {
+		return turnValue;
 	}
 
 	/*** PID ***/
@@ -82,7 +79,4 @@ public class SwerveModule {
 	public String getName() {
 		return name;
 	}
-
-
-
 }

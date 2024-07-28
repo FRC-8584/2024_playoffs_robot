@@ -27,4 +27,9 @@ public class Tools {
 
 		return pos;
 	}
+
+	//check deadband
+	public static double deadband(double value, final double deadbandValue) {
+		return -deadbandValue < value && value < deadbandValue ? 0 : value;
+	}
 }
