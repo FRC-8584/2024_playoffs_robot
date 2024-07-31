@@ -134,7 +134,7 @@ public class Swerve extends SubsystemBase{
    */
   private void getRobotHeading() {
     if(Gyro.isInitialized()){
-      final double temp = Gyro.getVector() + Constants.OperatorConstants.originRobotHeading;
+      final double temp = Gyro.getVector() + Constants.OperatorConstants.OriginRobotHeading;
 
       robotHeading = temp >= 360 ? temp - 360 : temp;
     }

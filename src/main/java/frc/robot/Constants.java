@@ -4,6 +4,9 @@ public final class Constants {
   
   public static final double kRobotLength = 1.0;
   public static final double kRobotWidth = 1.0;
+  public static final double ShooterHight = 878;//mm
+
+  public static final double Shooter_SpeakerHight = ShooterHight - OperatorConstants.SpeakerHight;//mm
 
   public static class OperatorConstants {
     public static final int Player1Port = 0;
@@ -11,7 +14,9 @@ public final class Constants {
 
     public static final double kMove = 1;
     public static final double kTrun = 1;
-    public static final double originRobotHeading = 0;
+    public static final double OriginRobotHeading = 0;
+
+    public static final double SpeakerHight = 9487;//mm
   }
 
   public static class MotorControllerID {

@@ -15,19 +15,19 @@ public class Transfer extends SubsystemBase {
   @Override
   public void periodic() {}
 
-  public void topMotorIn() {
+  public void topMotorShoot() {
     topMotor.set(Constants.MotorConstants.kTopTransferSpeed);
   }
 
-  public void topMotorOut() {
+  public void topMotorBack() {
     topMotor.set(-Constants.MotorConstants.kTopTransferSpeed);
   }
 
-  public void bottomMotorIn() {
+  public void bottomMotorShoot() {
     bottomMotor.set(Constants.MotorConstants.kBottomTransferSpeed);
   }
 
-  public void bottomMotorOut() {
+  public void bottomMotorBack() {
     bottomMotor.set(-Constants.MotorConstants.kBottomTransferSpeed);
   }
 }
