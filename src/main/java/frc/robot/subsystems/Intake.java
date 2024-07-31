@@ -9,9 +9,7 @@ import frc.robot.Constants;
 public class Intake extends SubsystemBase {
   private final CANSparkMax motor = new CANSparkMax(Constants.MotorControllerID.IntakeID, MotorType.kBrushed);
 
-  public Intake() {
-
-  }
+  public Intake() {}
 
   public void in(){
     motor.set(Constants.MotorConstants.kIntakeSpeed);

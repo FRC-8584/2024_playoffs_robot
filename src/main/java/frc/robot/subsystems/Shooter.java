@@ -7,16 +7,16 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Shooter extends SubsystemBase {
-  private final CANSparkMax upMotor = new CANSparkMax(Constants.MotorControllerID.TopShooterID, MotorType.kBrushed);
-  private final CANSparkMax downMotor = new CANSparkMax(Constants.MotorControllerID.TopShooterID, MotorType.kBrushed);
+  private final CANSparkMax topMotor = new CANSparkMax(Constants.MotorControllerID.TopShooterID, MotorType.kBrushed);
+  private final CANSparkMax bottomMotor = new CANSparkMax(Constants.MotorControllerID.BottomShooterID, MotorType.kBrushed);
 
   public Shooter() {
-    upMotor.set(0);
-    downMotor.set(0);
+    topMotor.set(0);
+    bottomMotor.set(0);
   }
 
-  public void shoot(){
-    upMotor.set(Constants.MotorConstants.kShooterSpeed);
-    downMotor.set(-Constants.MotorConstants.kShooterSpeed);
+  public void shoot(double force){
+    topMotor.set(force * Constants.MotorConstants.kShooterSpeed);
+    bottomMotor.set(-force * Constants.MotorConstants.kShooterSpeed);
   }
 }
