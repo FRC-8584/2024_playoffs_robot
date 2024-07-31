@@ -7,6 +7,8 @@ public final class Constants {
   public static final double ShooterHight = 878;//mm
 
   public static final double Shooter_SpeakerHight = ShooterHight - OperatorConstants.SpeakerHight;//mm
+  public static final double MaxShootSpeakerDistance = 3000;//mm
+  public static final double MaxShootSpeakerYawDegrees = 60;//degrees
 
   public static class OperatorConstants {
     public static final int Player1Port = 0;

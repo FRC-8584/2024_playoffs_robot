@@ -29,8 +29,7 @@ public class Shaft extends SubsystemBase {
     REncValue = Rmotor.getEncoder().getPosition();
   }
 
-  public void turnShaft(double degrees) {
-    
+  public void setPosition(double degrees) {
     // Lmotor.set(Constants.MotorConstants.kShaftSpeed);
     // Rmotor.set(Constants.MotorConstants.kShaftSpeed);
   }

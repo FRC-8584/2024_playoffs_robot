@@ -25,8 +25,8 @@ public class Turret extends SubsystemBase {
     encValue = motor.getEncoder().getPosition();
   }
 
-  public void turnTurret(double force) {
-    motor.set(force * Constants.MotorConstants.kTurretSpeed);
+  public void setPosition(double degrees) {
+    // motor.set(Constants.MotorConstants.kTurretSpeed);
   }
 
   public double getInitEncValue() {
