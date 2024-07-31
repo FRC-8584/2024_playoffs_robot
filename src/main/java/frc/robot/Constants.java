@@ -39,6 +39,8 @@ public final class Constants {
   public static class MotorConstants {
     public static final double kIntakeSpeed = 1.0;
     public static final double kShooterSpeed = 1.0;
+    public static final double kTopTransferSpeed = 1.0;
+    public static final double kBottomTransferSpeed = 1.0;
     public static final double kShaftSpeed = 0.5;
     public static final double kTurretSpeed = 0.5;
 
