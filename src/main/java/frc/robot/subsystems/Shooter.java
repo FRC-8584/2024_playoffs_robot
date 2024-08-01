@@ -15,6 +15,9 @@ public class Shooter extends SubsystemBase {
     bottomMotor.set(0);
   }
 
+  public void shoot(double power) {
+    topMotor.set(power);
+    bottomMotor.set(power * -1.0);
   }
 
 }
