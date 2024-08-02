@@ -34,6 +34,7 @@ public class Shaft extends SubsystemBase {
   public void periodic() {
     LEncValue = Lmotor.getEncoder().getPosition();
     REncValue = Rmotor.getEncoder().getPosition();
+    
     if(Math.abs(LEncValue - REncValue) > 0.5) {
       if(LEncValue > REncValue){
         double err = LEncValue - REncValue;

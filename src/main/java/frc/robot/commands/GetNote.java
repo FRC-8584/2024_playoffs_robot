@@ -11,6 +11,8 @@ public class GetNote extends Command {
 
   private double power, x;
 
+  private final double kTurningSpeed = 0.5; 
+
   public GetNote(Intake intake, Swerve swerve) {
     m_swerve = swerve;
     m_intake = intake;
@@ -29,7 +31,7 @@ public class GetNote extends Command {
     power = Math.abs(x) > 10 ? 1.0 : x/10.0;
     if(x > 0) power *= -1.0;
 
-    power *= 0.5;
+    power *= kTurningSpeed;
     
     if(Math.abs(x) < 10) m_swerve.move(power, 0, 0.5);
     else m_swerve.move(power, 0, 0);
