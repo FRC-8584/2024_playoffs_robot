@@ -7,7 +7,7 @@ public final class Constants {
   public static final double ShooterHight = 878;//mm
 
   public static final double Shooter_SpeakerHight      = ShooterHight - OperatorConstants.SpeakerHight;//mm
-  public static final double Shooter_Limelight         = 150; //mm    
+  public static final double Shooter_Limelight         = 9487; //mm    
                          
   public static final double MaxShootSpeakerDistance   = 3000;//mm  
   public static final double MaxShootSpeakerYawDegrees = 60;  //degrees
@@ -21,9 +21,9 @@ public final class Constants {
     public static final double OriginRobotHeading = 0;
 
     public static final double SpeakerHight = 9487;//mm
-    public static final double TagHight = 0;   //mm
-    public static final double LimelightAngle = 30;  //degrees
-    public static final double LimelightHight = 150; //mm 
+    public static final double TagHight = 9487;   //mm
+    public static final double LimelightAngle = 9487;  //degrees
+    public static final double LimelightHight = 9487; //mm 
   }
 
   public static class MotorControllerID {
