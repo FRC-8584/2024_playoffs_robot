@@ -19,12 +19,11 @@ public class Swerve extends SubsystemBase{
   /**********variables**********/
 
   private double robotHeading;
-  private final double driverHeading = 0;
 
   /**********constants**********/
 
-  private static final double r = Math.sqrt(Math.pow(Constants.kRobotLength ,2)+ Math.pow(Constants.kRobotWidth ,2));
-  private static final double a = Constants.kRobotLength / r, b = Constants.kRobotWidth / r;
+  private static final double a = Constants.MechanicalConstants.RobotLength / Constants.MechanicalConstants.r;
+  private static final double b = Constants.MechanicalConstants.RobotWidth / Constants.MechanicalConstants.r;
 
   /**********functions**********/
 
@@ -139,7 +138,7 @@ public class Swerve extends SubsystemBase{
       robotHeading = temp >= 360 ? temp - 360 : temp;
     }
     else{
-      robotHeading = driverHeading;
+      robotHeading = Constants.OperatorConstants.DriverHeading;
     }
   }
 
@@ -154,7 +153,7 @@ public class Swerve extends SubsystemBase{
   private double[] convertHeading(double x, double y) {
     return Tools.toVector(
       Math.sqrt(x*x + y*y),
-      Tools.toDegrees(x, y) - (robotHeading - driverHeading)
+      Tools.toDegrees(x, y) - (robotHeading - Constants.OperatorConstants.DriverHeading)
     );//radius, angle
   }
 }

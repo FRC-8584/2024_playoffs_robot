@@ -21,7 +21,7 @@ public class SwerveModule {
 
 	/**********functions**********/
 
-	public SwerveModule(int turningMotorID, int driveMotorID, PID pid){
+	public SwerveModule(final int turningMotorID, final int driveMotorID, final PID pid){
 		turningMotor = new TalonSRX(turningMotorID);
 		driveMotor = new CANSparkMax(driveMotorID, CANSparkLowLevel.MotorType.kBrushed);
 		this.pid = pid;
@@ -39,7 +39,7 @@ public class SwerveModule {
 
 	/*** motor ***/
 
-	public void setpoint(double speed, double angle) {
+	public void setpoint(final double speed, final double angle) {
 		double error = angle - turnValue;//SP - PV 
 
 		error = error > 180 ? error - 360 : error;
@@ -67,9 +67,8 @@ public class SwerveModule {
 
 	/*** PID ***/
 
-	public void setPID(double kP, double kI, double kD) {
-		pid = new PID(kP, kI, kD);
-		pid.resetIntergral();
+	public void setPID(PID pid) {
+		this.pid = pid;
 	}
 
 	/*** name ***/
