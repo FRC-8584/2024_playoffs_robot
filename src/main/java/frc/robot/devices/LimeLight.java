@@ -20,7 +20,7 @@ public class LimeLight {
   public static double getSpeakerDistance() {
     if(!isDetectedSpeaker()) return -1;
     // if(not detected) return -1;
-    d = (Constants.kTagHight - Constants.kLimelightHight) / Math.tan((ty + Constants.kLimelightAngle) / 180 * 3.1415926);
+    d = (Constants.OperatorConstants.TagHight - Constants.OperatorConstants.LimelightHight) / Math.tan((ty + Constants.OperatorConstants.LimelightAngle) / 180 * 3.1415926);
     return d;//mm
   }
 
