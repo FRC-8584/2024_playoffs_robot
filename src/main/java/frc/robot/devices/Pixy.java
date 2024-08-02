@@ -11,7 +11,7 @@ public class Pixy {
     return 0;
   }
 
-  public static double getTa() {
+  public static double getTA() {
     update();
     return 0;
   }
