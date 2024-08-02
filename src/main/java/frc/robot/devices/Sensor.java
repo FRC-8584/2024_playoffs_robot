@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.DigitalOutput;
 
 public class Sensor {
 
-  public void initailize() {
+  public static void initailize() {
     IntakeSensor.output.set(true);
     TransferSensor.output.set(true);
   }
