@@ -25,7 +25,7 @@ public class GetNote extends Command {
       m_intake.stop();
       return;
     }
-    
+
     power = Math.abs(x) > 10 ? 1.0 : x/10.0;
     if(x > 0) power *= -1.0;
 
@@ -35,6 +35,11 @@ public class GetNote extends Command {
     else m_swerve.move(power, 0, 0);
 
     return;
+  }
+
+  @Override
+  public void end(boolean interrupted) {
+    m_intake.stop();
   }
 
 }
