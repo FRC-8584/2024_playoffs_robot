@@ -3,8 +3,15 @@ package frc.robot;
 public final class Constants {
   public static final double Shooter_SpeakerHight = MechanicalConstants.ShooterHight - FieldConstants.SpeakerHight;//mm
 
+  public static final double Shooter_SpeakerHight      = ShooterHight - OperatorConstants.SpeakerHight;//mm
+  public static final double Shooter_Limelight         = 150; //mm    
+                         
+  public static final double MaxShootSpeakerDistance   = 3000;//mm  
+  public static final double MaxShootSpeakerYawDegrees = 60;  //degrees
+
   public static final double MaxShootSpeakerDistance = 3000;//mm
   public static final double MaxShootSpeakerYawDegrees = 60;//degrees
+
 
   public static class MechanicalConstants {
     public static final double RobotLength = 1.0;
@@ -24,8 +31,14 @@ public final class Constants {
     public static final double kMove = 1;
     public static final double kTrun = 1;
 
+    public static final double SpeakerHight = 9487;//mm
+    public static final double TagHight = 0;   //mm
+    public static final double LimelightAngle = 30;  //degrees
+    public static final double LimelightHight = 150; //mm 
+
     public static final double OriginRobotHeading = 0;
     public static final double DriverHeading = 0;
+
   }
 
   //motor controller ID
@@ -60,5 +73,12 @@ public final class Constants {
     public static final double kShooterSpeed = 1.0;
     public static final double kShaftSpeed = 0.5;
     public static final double kTurretSpeed = 0.5;
+  }
+
+  public static class SensorConstants {
+    public static final int kInrakeInputPort = 0;
+    public static final int kInrakeOutputPort = 1;
+    public static final int kTransferInputPort = 2;
+    public static final int kTransferOutputPort = 3;
   }
 }
