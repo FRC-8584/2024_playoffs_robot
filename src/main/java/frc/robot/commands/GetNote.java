@@ -2,6 +2,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.devices.Pixy;
+import frc.robot.devices.Sensor;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Swerve;
 
@@ -23,18 +24,21 @@ public class GetNote extends Command {
   public void execute() {
     x = Pixy.getTX();
 
-    if(!Pixy.isDetected() || (Pixy.getTA() < 5)) {
+    if(!Pixy.isDetected() || (Pixy.getTA() < 5) || Sensor.IntakeSensor.isDetected()) {
       m_intake.stop();
       return;
     }
 
-    power = Math.abs(x) > 10 ? 1.0 : x/10.0;
-    if(x > 0) power *= -1.0;
+    power = Math.abs(x) > 35 ? 1.0 : x/10.0;
 
+    if(x > 0) power *= -1.0;
     power *= kTurningSpeed;
     
-    if(Math.abs(x) < 10) m_swerve.move(power, 0, 0.5);
-    else m_swerve.move(power, 0, 0);
+    if(Math.abs(x) < 35) m_swerve.move(power, 0, 0.5);
+    else{
+      m_intake.in();
+      m_swerve.move(power, 0, 0);
+    } 
 
     return;
   }

@@ -14,7 +14,7 @@ public class Sensor {
     private static final DigitalOutput output = new DigitalOutput(0);
     private static final DigitalInput input = new DigitalInput(1);
 
-    public static boolean getValue() {
+    public static boolean isDetected() {
       return input.get();
     }
   }
@@ -23,7 +23,7 @@ public class Sensor {
     private static final DigitalOutput output = new DigitalOutput(2);
     private static final DigitalInput input = new DigitalInput(3);
 
-    public static boolean getValue() {
+    public static boolean isDetected() {
       return input.get();
     }
   }
