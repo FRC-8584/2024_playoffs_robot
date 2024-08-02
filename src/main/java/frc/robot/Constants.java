@@ -52,4 +52,11 @@ public final class Constants {
     public static final double kTurretSpeed = 0.5;
 
   }
+
+  public static class SensorConstants {
+    public static final int kInrakeInputPort = 0;
+    public static final int kInrakeOutputPort = 1;
+    public static final int kTransferInputPort = 2;
+    public static final int kTransferOutputPort = 3;
+  }
 }
