@@ -56,6 +56,11 @@ public class Shaft extends SubsystemBase {
     Rmotor.set(Tools.bounding(pid2.calculate(Rerr / (kMaxAngle - kMinAngle)), -1, 1));
   }
 
+  public void setPower(double force) {
+    Lmotor.set(force);
+    Rmotor.set(force);
+  }
+
   public double[] getInitEncValue() {
     return new double[]{LInitEncValue, RInitEncValue};
   }
@@ -63,4 +68,5 @@ public class Shaft extends SubsystemBase {
   public double[] getEncValue() {
     return new double[]{LEncValue, REncValue};
   }
+
 }

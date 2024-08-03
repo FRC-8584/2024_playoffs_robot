@@ -19,4 +19,8 @@ public class JoystickShoter extends Command {
     m_shooter.shoot(m_power);
   }
 
+  @Override
+  public void end(boolean interrupted) {
+    m_shooter.shoot(0);
+  }
 }

@@ -18,4 +18,9 @@ public class JoystickIntake extends Command {
   public void execute() {
     m_intake.set(m_power);
   }
+  
+  @Override
+  public void end(boolean interrupted) {
+    m_intake.set(0);
+  }
 }
