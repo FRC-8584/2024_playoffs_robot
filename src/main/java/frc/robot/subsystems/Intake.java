@@ -25,5 +25,9 @@ public class Intake extends SubsystemBase {
     motor.set(0);
   }
 
+  public void set(double power) {
+    motor.set(power);
+  }
+
   public Command IntakeOut = new StartEndCommand(()->this.out(), null, this);
 }
