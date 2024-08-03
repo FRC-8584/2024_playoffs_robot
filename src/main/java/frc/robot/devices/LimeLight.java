@@ -3,15 +3,17 @@ package frc.robot.devices;
 import org.opencv.core.Mat;
 
 import frc.robot.Constants;
+import frc.robot.utils.LimelightHelpers;
 
 public class LimeLight {
   public static void initialize() {}
 
-  private static double tx, ty, ta, d;
+  private static double ty, ta, d;
+  private static int tid;
 
   public static boolean isDetectedSpeaker() {
     update();
-    if (ta > 1.0)
+    if (ta > 0.8 && (tid == 5 || tid == 6))
       return true;
     else
       return false;
@@ -30,6 +32,7 @@ public class LimeLight {
   }
 
   private static void update() {
-    d = 0;
+    ty = LimelightHelpers.getTY("8584");
+    ta = LimelightHelpers.getTA("8584");
   }
 }
