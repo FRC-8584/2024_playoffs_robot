@@ -20,7 +20,14 @@ public class ShootSpeaker extends Command {
 
   private double angle;
 
-  public ShootSpeaker() {}
+  public ShootSpeaker(Shooter shooter, Transfer transfer, Shaft shaft, Turret turret) {
+    m_shooter = shooter;
+    m_transfer = transfer;
+    m_shaft = shaft;
+    m_turret = turret;
+
+    addRequirements(m_shooter, m_transfer, m_shaft, m_turret);
+  }
 
   @Override
   public void execute() {
