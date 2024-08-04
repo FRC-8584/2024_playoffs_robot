@@ -1,7 +1,5 @@
 package frc.robot.devices;
 
-import org.opencv.core.Mat;
-
 import frc.robot.Constants;
 import frc.robot.utils.LimelightHelpers;
 
@@ -28,7 +26,7 @@ public class LimeLight {
 
   public static double getSpeakerYawDegrees() {
     if(!isDetectedSpeaker()) return 9487;
-    return Math.atan(Constants.Shooter_SpeakerHight / (d + Constants.Shooter_Limelight)) * 180 / 3.1415926; //degrees
+    return Math.atan(Constants.Shooter_SpeakerHight / (d + Constants.Shooter_LimelightDiscance)) * 180 / 3.1415926; //degrees
   }
 
   public static double getAmpYawDegrees() {
