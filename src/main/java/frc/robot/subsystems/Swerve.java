@@ -8,7 +8,7 @@ import frc.robot.utils.Tools;
 import frc.robot.Constants;
 import frc.robot.devices.Gyro;
 
-public class Swerve extends SubsystemBase{
+public class Swerve extends SubsystemBase {
   /**********swerve motor modules**********/
 
 	private final SwerveModule lf;

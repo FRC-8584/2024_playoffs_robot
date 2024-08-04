@@ -5,6 +5,7 @@ import frc.robot.subsystems.Shaft;
 
 public class JoystickShaft extends Command {
   private Shaft m_shaft;
+  
   private double m_power;
 
   public JoystickShaft(Shaft shaft, double power) {

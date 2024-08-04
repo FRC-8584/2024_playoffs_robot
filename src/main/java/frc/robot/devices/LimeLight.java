@@ -23,12 +23,12 @@ public class LimeLight {
     if(!isDetectedSpeaker()) return -1;
     // if(not detected) return -1;
     d = (Constants.OperatorConstants.TagHight - Constants.OperatorConstants.LimelightHight) / Math.tan((ty + Constants.OperatorConstants.LimelightAngle) / 180 * 3.1415926);
-    return d;//mm
+    return d; //mm
   }
 
   public static double getSpeakerYawDegrees() {
     if(!isDetectedSpeaker()) return 9487;
-    return Math.atan( Constants.Shooter_SpeakerHight / (d + Constants.Shooter_Limelight)) * 180 / 3.1415926;//degrees
+    return Math.atan(Constants.Shooter_SpeakerHight / (d + Constants.Shooter_Limelight)) * 180 / 3.1415926; //degrees
   }
 
   private static void update() {

@@ -9,8 +9,8 @@ public class JoystickShoter extends Command {
   private double m_power;
   
   public JoystickShoter(Shooter shooter, double power) {
-    m_shooter = shooter; 
-    m_power = power; 
+    m_shooter = shooter;
+    m_power = power;
     addRequirements(m_shooter);
   }
 

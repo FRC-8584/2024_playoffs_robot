@@ -1,23 +1,22 @@
 package frc.robot;
 
 public final class Constants {
-  public static final double Shooter_SpeakerHight = MechanicalConstants.ShooterHight - FieldConstants.SpeakerHight;//mm
+  public static final double Shooter_SpeakerHight = MechanicalConstants.ShooterHight - FieldConstants.SpeakerHight; //mm
 
-  public static final double Shooter_Limelight         = 9487; //mm    
+  public static final double Shooter_Limelight         = 9487; //mm
                          
-  public static final double MaxShootSpeakerDistance   = 3000;//mm  
-  public static final double MaxShootSpeakerYawDegrees = 60;  //degrees
-
+  public static final double MaxShootSpeakerDistance   = 3000; //mm
+  public static final double MaxShootSpeakerYawDegrees = 60; //degrees
 
   public static class MechanicalConstants {
     public static final double RobotLength = 1.0;
     public static final double RobotWidth = 1.0;
     public static final double r = Math.sqrt(Math.pow(RobotLength ,2) + Math.pow(RobotWidth ,2));
-    public static final double ShooterHight = 300;//mm
+    public static final double ShooterHight = 300; //mm
   }
 
   public static class FieldConstants {
-    public static final double SpeakerHight = 1980;//mm
+    public static final double SpeakerHight = 1980; //mm
   }
 
   public static class OperatorConstants {
@@ -27,15 +26,12 @@ public final class Constants {
     public static final double kMove = 1;
     public static final double kTrun = 1;
 
-    public static final double SpeakerHight = 9487;//mm
-
-    public static final double TagHight = 9487;   //mm
-    public static final double LimelightAngle = 9487;  //degrees
+    public static final double TagHight = 9487; //mm
+    public static final double LimelightAngle = 9487; //degrees
     public static final double LimelightHight = 9487; //mm 
 
     public static final double OriginRobotHeading = 0;
     public static final double DriverHeading = 0;
-
   }
 
   //motor controller ID
