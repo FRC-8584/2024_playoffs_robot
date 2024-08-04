@@ -3,7 +3,7 @@ package frc.robot;
 public final class Constants {
   public static final double Shooter_SpeakerHight = MechanicalConstants.ShooterHight - FieldConstants.SpeakerHight; //mm
 
-  public static final double Shooter_Limelight         = 9487; //mm
+  public static final double Shooter_LimelightDiscance         = 9487; //mm
                          
   public static final double MaxShootSpeakerDistance   = 3000; //mm
   public static final double MaxShootSpeakerYawDegrees = 60; //degrees
