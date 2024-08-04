@@ -5,8 +5,7 @@ public final class Constants {
 
   public static final double Shooter_Limelight         = 9487; //mm
                          
-  public static final double MaxShootSpeakerDistance   = 3000; //mm
-  public static final double MaxShootSpeakerYawDegrees = 60; //degrees
+
 
   public static class MechanicalConstants {
     public static final double RobotLength = 1.0;
@@ -16,7 +15,7 @@ public final class Constants {
   }
 
   public static class FieldConstants {
-    public static final double SpeakerHight = 1980; //mm
+    public static final double SpeakerHight = 2000; //mm
   }
 
   public static class OperatorConstants {
@@ -32,6 +31,13 @@ public final class Constants {
 
     public static final double OriginRobotHeading = 0;
     public static final double DriverHeading = 0;
+
+    public static final double MaxShootSpeakerDistance   = 3000; //mm
+    public static final double MaxShootSpeakerYawDegrees = 60; //degrees
+    public static final double MaxShootAmpYawDegrees = 15; //degrees
+
+    public static final double ShootAmpPitchDegrees = 45; //degrees
+    public static final double ShootAmpPwr = 0.5;
   }
 
   //motor controller ID

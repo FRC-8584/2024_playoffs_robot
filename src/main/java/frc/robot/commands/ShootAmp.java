@@ -3,24 +3,23 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Shaft;
 import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.Swerve;
 import frc.robot.subsystems.Transfer;
 import frc.robot.subsystems.Turret;
-import frc.robot.utils.Tools;
 import frc.robot.Constants;
 import frc.robot.devices.LimeLight;
 
-public class ShootSpeaker extends Command {
+public class ShootAmp extends Command {
   private Shooter m_shooter;
   private Transfer m_transfer;
   private Shaft m_shaft;
   private Turret m_turret;
+  private Swerve m_swerve;
 
   private double shooterPitch, shooterYaw;
-  private double robotDistance, robotYaw;
+  private double robotYaw;
 
-  private double angle;
-
-  public ShootSpeaker(Shooter shooter, Transfer transfer, Shaft shaft, Turret turret) {
+  public ShootAmp(Shooter shooter, Transfer transfer, Shaft shaft, Turret turret) {
     m_shooter = shooter;
     m_transfer = transfer;
     m_shaft = shaft;
@@ -38,27 +37,28 @@ public class ShootSpeaker extends Command {
     }
 
     //get value
-    robotDistance = LimeLight.getSpeakerDistance();
-    robotYaw = LimeLight.getSpeakerYawDegrees();
+    robotYaw = LimeLight.getAmpYawDegrees();
 
     //2. Is the robot's position able to shoot note into speaker?
-    if(robotDistance > Constants.OperatorConstants.MaxShootSpeakerDistance){//distance
+    if(robotYaw > Constants.OperatorConstants.MaxShootAmpYawDegrees){//yaw
       m_shooter.shoot(0);
+      m_swerve.move(-0.3, 0, 0);
       return;
     }
-    if(robotYaw > Constants.OperatorConstants.MaxShootSpeakerYawDegrees && robotYaw < 360 - Constants.OperatorConstants.MaxShootSpeakerYawDegrees){//yaw
+    if(robotYaw < 360 - Constants.OperatorConstants.MaxShootAmpYawDegrees){//yaw
       m_shooter.shoot(0);
+      m_swerve.move(0.3, 0, 0);
       return;
     }
 
+
     //get value
-    angle = Tools.toDegrees(Constants.Shooter_SpeakerHight, robotDistance);
-    shooterPitch = m_shaft.getEncValue()[0] - angle;
+    shooterPitch = m_shaft.getEncValue()[0] - Constants.OperatorConstants.ShootAmpPitchDegrees;
     shooterYaw = m_turret.getEncValue();
 
     //3. Is the shooter's direction able to shoot note into speaker?
     if(shooterPitch > 3 || shooterPitch < -3){//pitch
-      m_shaft.setPosition(angle);
+      m_shaft.setPosition(Constants.OperatorConstants.ShootAmpPitchDegrees);
       m_shooter.shoot(0);
       return;
     }
@@ -69,7 +69,7 @@ public class ShootSpeaker extends Command {
     }
 
     //get ready to shoot!
-    m_shooter.shoot(1);
+    m_shooter.shoot(Constants.OperatorConstants.ShootAmpPwr);
     m_transfer.topMotorShoot();
     m_transfer.bottomMotorShoot();
   }

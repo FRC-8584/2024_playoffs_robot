@@ -31,6 +31,10 @@ public class LimeLight {
     return Math.atan(Constants.Shooter_SpeakerHight / (d + Constants.Shooter_Limelight)) * 180 / 3.1415926; //degrees
   }
 
+  public static double getAmpYawDegrees() {
+    return 9487;
+  }
+
   private static void update() {
     ty = LimelightHelpers.getTY("8584");
     ta = LimelightHelpers.getTA("8584");
