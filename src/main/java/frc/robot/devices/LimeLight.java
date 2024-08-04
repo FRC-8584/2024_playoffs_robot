@@ -1,7 +1,5 @@
 package frc.robot.devices;
 
-import org.opencv.core.Mat;
-
 import frc.robot.Constants;
 import frc.robot.utils.LimelightHelpers;
 
