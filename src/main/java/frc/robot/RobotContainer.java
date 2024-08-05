@@ -55,7 +55,6 @@ public class RobotContainer {
   private void initialize(){
     Gyro.initialize();
     Sensor.initailize();
-    Pixy.initailize();
   }
 
   public Command getAutonomousCommand() {

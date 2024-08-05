@@ -10,24 +10,25 @@ import frc.robot.utils.pixy2api.Pixy2CCC;
 import frc.robot.utils.pixy2api.Pixy2CCC.Block;
 
 public class Pixy {
-  public static  int t_width, t_height;
-  public static  int t_x, t_y;
+  public static int t_width, t_height;
+  public static int t_x, t_y;
+
+	private static boolean isInitailized = false;
 
   private Block biggestBlock;
 
-  private Pixy2 pixy;
+  private Pixy2 pixy = Pixy2.createInstance(LinkType.SPI);
 
   private Timer executor;
   private final long THREAD_PERIOD = 20;
-  
-  public static void initailize() {
-		pixy = Pixy2.createInstance(LinkType.SPI);
-    pixy.init();
-		executor = new Timer();
-		executor.schedule(new PixyUpdateTask(this), 0L, THREAD_PERIOD);
-  }
-  
+
   private void update() {
+		if(isInitailized == false) {
+			pixy.init();
+			executor = new Timer();
+			executor.schedule(new PixyUpdateTask(this), 0L, THREAD_PERIOD);
+			isInitailized = true;
+		}
     biggestBlock = getBiggestBlock();
     if(biggestBlock != null) {
       t_height = biggestBlock.getHeight();
@@ -75,7 +76,7 @@ public class Pixy {
 
 		private PixyUpdateTask(Pixy imu) {
 			if (imu == null) {
-				throw new NullPointerException("Pixy pointer null");
+				throw new NullPointerException("BPixy pointer null");
 			}
 			this.imu = imu;
 		}
