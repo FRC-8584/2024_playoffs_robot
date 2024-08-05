@@ -18,6 +18,7 @@ import frc.robot.subsystems.Shaft;
 import frc.robot.subsystems.Turret;
 import frc.robot.subsystems.Climber;
 import frc.robot.commands.JoystickIntake;
+import frc.robot.commands.JoystickShaft;
 import frc.robot.commands.JoystickShooter;
 import frc.robot.commands.JoystickSwerve;
 
@@ -41,6 +42,7 @@ public class RobotContainer {
       ()->js1.getRawAxis(4))
     );
     shooter.setDefaultCommand(new JoystickShooter(shooter, ()->js2.getRawAxis(2), ()->js2.getRawAxis(3)).withInterruptBehavior(InterruptionBehavior.kCancelIncoming));
+    shaft.setDefaultCommand(new JoystickShaft(shaft, ()->js2.getY()));
     initialize();
     configureBindings();
   }

@@ -1,14 +1,16 @@
 package frc.robot.commands;
 
+import java.util.function.Supplier;
+
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Shaft;
 
 public class JoystickShaft extends Command {
   private Shaft m_shaft;
   
-  private double m_power;
+  private Supplier<Double> m_power;
 
-  public JoystickShaft(Shaft shaft, double power) {
+  public JoystickShaft(Shaft shaft, Supplier<Double> power) {
     m_shaft = shaft;
     m_power = power;
     addRequirements(m_shaft);
@@ -16,7 +18,7 @@ public class JoystickShaft extends Command {
 
   @Override
   public void execute() {
-    m_shaft.setPower(m_power);
+    m_shaft.setPower(m_power.get());
   }
 
   @Override
