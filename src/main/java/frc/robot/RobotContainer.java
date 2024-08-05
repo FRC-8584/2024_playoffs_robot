@@ -5,10 +5,11 @@ import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.Command.InterruptionBehavior;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
-// import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 import frc.robot.devices.Gyro;
 import frc.robot.devices.Sensor;
+
+/*** subsystems ***/
 
 import frc.robot.subsystems.Swerve;
 import frc.robot.subsystems.Intake;
@@ -17,10 +18,15 @@ import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Shaft;
 import frc.robot.subsystems.Turret;
 import frc.robot.subsystems.Climber;
-import frc.robot.commands.JoystickIntake;
-import frc.robot.commands.JoystickShaft;
-import frc.robot.commands.JoystickShooter;
+
+/*** commands ***/
+
 import frc.robot.commands.JoystickSwerve;
+import frc.robot.commands.JoystickIntake;
+import frc.robot.commands.JoystickShooter;
+import frc.robot.commands.JoystickShaft;
+import frc.robot.commands.ShootSpeaker;
+import frc.robot.commands.ShootAmp;
 
 public class RobotContainer {
   private final Swerve swerve = new Swerve();
