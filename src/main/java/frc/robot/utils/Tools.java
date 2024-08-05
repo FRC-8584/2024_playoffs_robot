@@ -28,6 +28,14 @@ public class Tools {
 		return pos;
 	}
 
+	//bounding 1 ~ -1
+	public static double bounding(double pos) {
+		pos = pos < -1 ? -1 : pos;
+		pos = pos > 1 ? 1 : pos;
+
+		return pos;
+	}
+
 	//check deadband
 	public static double deadband(double value, final double deadbandValue) {
 		return -deadbandValue < value && value < deadbandValue ? 0 : value;
