@@ -1,14 +1,17 @@
 package frc.robot.commands;
 
+import java.util.function.Supplier;
+
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.StartEndCommand;
 import frc.robot.subsystems.Intake;
 
 public class JoystickIntake extends Command {
   private Intake m_intake;
 
-  private double m_power;
+  private Supplier<Double> m_power;
   
-  public JoystickIntake(Intake intake, double power) {
+  public JoystickIntake(Intake intake, Supplier<Double> power) {
     m_intake = intake; 
     m_power = power;
     addRequirements(m_intake);
@@ -16,7 +19,7 @@ public class JoystickIntake extends Command {
 
   @Override
   public void execute() {
-    m_intake.set(m_power);
+    m_intake.set(m_power.get());
   }
   
   @Override

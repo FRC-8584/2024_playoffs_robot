@@ -12,8 +12,8 @@ public class Shaft extends SubsystemBase {
   private final CANSparkMax Lmotor = new CANSparkMax(Constants.MotorControllerID.LShaftID, MotorType.kBrushless);
   private final CANSparkMax Rmotor = new CANSparkMax(Constants.MotorControllerID.RShaftID, MotorType.kBrushless);
 
-  private final PID pid1 = new PID(0.1, 1e-2, 0);
-  private final PID pid2 = new PID(1.0, 1e-2, 0);
+  private final PID pid1 = new PID(0.05, 0, 0);
+  private final PID pid2 = new PID(0.5, 1e-2, 0);
 
   private final double LInitEncValue;
   private final double RInitEncValue;
@@ -27,13 +27,13 @@ public class Shaft extends SubsystemBase {
 
   public Shaft() {
     LInitEncValue = Lmotor.getEncoder().getPosition();
-    RInitEncValue = Rmotor.getEncoder().getPosition();
+    RInitEncValue = -Rmotor.getEncoder().getPosition();
   }
 
   @Override
   public void periodic() {
     LEncValue = Lmotor.getEncoder().getPosition();
-    REncValue = Rmotor.getEncoder().getPosition();
+    REncValue = -Rmotor.getEncoder().getPosition();
     
     if(Math.abs(LEncValue - REncValue) > 0.5) {
       if(LEncValue > REncValue){
@@ -53,12 +53,12 @@ public class Shaft extends SubsystemBase {
     double Rerr = degrees - (REncValue / 60.0 * 360.0 + kInitAngle);
 
     Lmotor.set(Tools.bounding(pid2.calculate(Lerr / (kMaxAngle - kMinAngle)), -1, 1));
-    Rmotor.set(Tools.bounding(pid2.calculate(Rerr / (kMaxAngle - kMinAngle)), -1, 1));
+    Rmotor.set(-Tools.bounding(pid2.calculate(Rerr / (kMaxAngle - kMinAngle)), -1, 1));
   }
 
   public void setPower(double force) {
     Lmotor.set(force);
-    Rmotor.set(force);
+    Rmotor.set(-force);
   }
 
   public double[] getInitEncValue() {
