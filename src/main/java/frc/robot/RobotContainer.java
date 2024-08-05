@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.Joystick;
 // import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 import frc.robot.devices.Gyro;
+import frc.robot.devices.Pixy;
 import frc.robot.devices.Sensor;
 
 import frc.robot.subsystems.Swerve;
@@ -17,7 +18,6 @@ import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Shaft;
 import frc.robot.subsystems.Turret;
 import frc.robot.subsystems.Climber;
-import frc.robot.commands.JoystickIntake;
 import frc.robot.commands.JoystickShaft;
 import frc.robot.commands.JoystickShooter;
 import frc.robot.commands.JoystickSwerve;
@@ -55,6 +55,7 @@ public class RobotContainer {
   private void initialize(){
     Gyro.initialize();
     Sensor.initailize();
+    Pixy.initailize();
   }
 
   public Command getAutonomousCommand() {

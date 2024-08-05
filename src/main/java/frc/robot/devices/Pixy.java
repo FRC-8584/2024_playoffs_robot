@@ -20,7 +20,7 @@ public class Pixy {
   private Timer executor;
   private final long THREAD_PERIOD = 20;
   
-  public void initailize() {
+  public static void initailize() {
 		pixy = Pixy2.createInstance(LinkType.SPI);
     pixy.init();
 		executor = new Timer();
@@ -75,7 +75,7 @@ public class Pixy {
 
 		private PixyUpdateTask(Pixy imu) {
 			if (imu == null) {
-				throw new NullPointerException("BNO055 pointer null");
+				throw new NullPointerException("Pixy pointer null");
 			}
 			this.imu = imu;
 		}
