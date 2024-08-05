@@ -18,10 +18,6 @@ public class Shaft extends SubsystemBase {
   private final double LInitEncValue;
   private final double RInitEncValue;
 
-  private final double kInitAngle = 20.0;
-  private final double kMinAngle = 20.0;
-  private final double kMaxAngle = 90.0;
-
   private double LEncValue;
   private double REncValue;
 
@@ -48,12 +44,12 @@ public class Shaft extends SubsystemBase {
   }
 
   public void setPosition(double degrees) {
-    if((degrees > kMaxAngle) || (degrees < kMinAngle)) return;
-    double Lerr = degrees - (LEncValue / 60.0 * 360.0 + kInitAngle);
-    double Rerr = degrees - (REncValue / 60.0 * 360.0 + kInitAngle);
+    if((degrees > Constants.MechanicalConstants.kShaftMaxAngle) || (degrees < Constants.MechanicalConstants.kShaftMaxAngle)) return;
+    double Lerr = degrees - (LEncValue / 60.0 * 360.0 + Constants.MechanicalConstants.kShaftInitAngle);
+    double Rerr = degrees - (REncValue / 60.0 * 360.0 + Constants.MechanicalConstants.kShaftInitAngle);
 
-    Lmotor.set(Tools.bounding(pid2.calculate(Lerr / (kMaxAngle - kMinAngle)), -1, 1));
-    Rmotor.set(-Tools.bounding(pid2.calculate(Rerr / (kMaxAngle - kMinAngle)), -1, 1));
+    Lmotor.set(Tools.bounding(pid2.calculate(Lerr / (Constants.MechanicalConstants.kShaftMaxAngle - Constants.MechanicalConstants.kShaftMaxAngle)), -1, 1));
+    Rmotor.set(-Tools.bounding(pid2.calculate(Rerr / (Constants.MechanicalConstants.kShaftMaxAngle - Constants.MechanicalConstants.kShaftMaxAngle)), -1, 1));
   }
 
   public void setPower(double force) {

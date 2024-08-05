@@ -10,6 +10,10 @@ public final class Constants {
     public static final double RobotWidth = 1.0;
     public static final double r = Math.sqrt(Math.pow(RobotLength ,2) + Math.pow(RobotWidth ,2));
     public static final double ShooterHight = 300; //mm
+
+    public static final double kShaftInitAngle = 20.0;
+    public static final double kShaftMinAngle = 20.0;
+    public static final double kShaftMaxAngle = 90.0;
   }
 
   public static class FieldConstants {
