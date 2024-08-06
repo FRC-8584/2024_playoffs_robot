@@ -44,7 +44,7 @@ public class ShootSpeaker extends Command {
 
     //get value
     angle = Tools.toDegrees(Constants.Shooter_SpeakerHight, robotDistance);
-    shooterPitch = m_shaft.getEncValue()[0] - angle;
+    shooterPitch = m_shaft.getShaftAngle()[0] - angle;
 
     //2. Is the shooter's direction able to shoot note into speaker?
     if(shooterPitch > 3 || shooterPitch < -3){//pitch

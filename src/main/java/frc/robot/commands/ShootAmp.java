@@ -45,7 +45,7 @@ public class ShootAmp extends Command {
 
 
     //get value
-    shooterPitch = m_shaft.getEncValue()[0] - Constants.OperatorConstants.ShootAmpPitchDegrees;
+    shooterPitch = m_shaft.getShaftAngle()[0] - Constants.OperatorConstants.ShootAmpPitchDegrees;
 
     //2. Is the shooter's direction able to shoot note into speaker?
     if(shooterPitch > 3 || shooterPitch < -3){//pitch

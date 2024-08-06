@@ -11,8 +11,8 @@ public final class Constants {
     public static final double r = Math.sqrt(Math.pow(RobotLength ,2) + Math.pow(RobotWidth ,2));
     public static final double ShooterHight = 300; //mm
 
-    public static final double ShaftInitAngle = 20.0;
-    public static final double ShaftMinAngle = 20.0;
+    public static final double ShaftInitAngle = 0;
+    public static final double ShaftMinAngle = 0;
     public static final double ShaftMaxAngle = 90.0;
   }
 

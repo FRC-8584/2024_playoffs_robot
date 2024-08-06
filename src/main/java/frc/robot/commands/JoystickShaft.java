@@ -18,7 +18,7 @@ public class JoystickShaft extends Command {
 
   @Override
   public void execute() {
-    m_shaft.setPower(m_power.get());
+    m_shaft.setPower(-m_power.get());
   }
 
   @Override
