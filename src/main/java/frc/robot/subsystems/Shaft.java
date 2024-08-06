@@ -12,28 +12,29 @@ public class Shaft extends SubsystemBase {
   private final CANSparkMax Lmotor = new CANSparkMax(Constants.MotorControllerID.LShaftID, MotorType.kBrushless);
   private final CANSparkMax Rmotor = new CANSparkMax(Constants.MotorControllerID.RShaftID, MotorType.kBrushless);
 
-  private final PID pid1 = new PID(0.05, 0, 0);
+  private final PID pid1 = new PID(0.1, 0, 0);
   private final PID pid2 = new PID(0.5, 1e-2, 0);
+
+  private final double InitLEnc;
+  private final double InitREnc;
 
   private double LAngle;
   private double RAngle;
 
-  public Shaft() {}
+  public Shaft() {
+    InitLEnc = Lmotor.getEncoder().getPosition();
+    InitREnc = Rmotor.getEncoder().getPosition();
+  }
 
   @Override
   public void periodic() {
-    LAngle = -Lmotor.getEncoder().getPosition() * 60.0 + Constants.MechanicalConstants.ShaftInitAngle;
-    RAngle = Rmotor.getEncoder().getPosition() * 60.0 - Constants.MechanicalConstants.ShaftInitAngle;
+    LAngle = -(Lmotor.getEncoder().getPosition() - InitLEnc) * 1.6 + Constants.MechanicalConstants.ShaftInitAngle;
+    RAngle = (Rmotor.getEncoder().getPosition() - InitREnc) * 1.6 + Constants.MechanicalConstants.ShaftInitAngle;
     
-    if(Math.abs(LAngle - RAngle) > 0.5) {
-      if(LAngle > RAngle){
-        double err = LAngle - RAngle;
-        Lmotor.set(Tools.bounding(pid1.calculate(err)));
-      }
-      else {
-        double err = RAngle - LAngle;
-        Lmotor.set(Tools.bounding(pid1.calculate(err)));
-      }
+    double err = Math.abs(LAngle - RAngle);
+    if(err > 3) {
+      Lmotor.set(-Tools.bounding(pid1.calculate(err / Constants.MechanicalConstants.ShaftAngleRange)));
+      Rmotor.set(Tools.bounding(pid1.calculate(err / Constants.MechanicalConstants.ShaftAngleRange)));
     }
   }
 
@@ -42,8 +43,8 @@ public class Shaft extends SubsystemBase {
     double Lerr = degrees - LAngle;
     double Rerr = degrees - RAngle;
 
-    Lmotor.set(-Tools.bounding(pid2.calculate(Lerr / (Constants.MechanicalConstants.ShaftMaxAngle - Constants.MechanicalConstants.ShaftMinAngle))));
-    Rmotor.set(Tools.bounding(pid2.calculate(Rerr / (Constants.MechanicalConstants.ShaftMaxAngle - Constants.MechanicalConstants.ShaftMinAngle))));
+    Lmotor.set(-Tools.bounding(pid2.calculate(Lerr / Constants.MechanicalConstants.ShaftAngleRange)));
+    Rmotor.set(Tools.bounding(pid2.calculate(Rerr / Constants.MechanicalConstants.ShaftAngleRange)));
   }
 
   public void setPower(double force) {
