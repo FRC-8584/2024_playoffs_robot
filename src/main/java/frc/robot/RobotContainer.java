@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
 
 import frc.robot.devices.Gyro;
+import frc.robot.devices.LimeLight;
 import frc.robot.devices.Pixy;
 import frc.robot.devices.Sensor;
 
@@ -61,6 +62,7 @@ public class RobotContainer {
   private void initialize(){
     Gyro.initialize();
     Sensor.initailize();
+    LimeLight.initialize();
   }
 
   public Command getAutonomousCommand() {
