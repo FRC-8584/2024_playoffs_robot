@@ -59,8 +59,8 @@ public class ShootSpeaker extends Command {
 
     //get ready to shoot!
     m_shooter.shoot(1);
-    m_transfer.topMotorShoot();
-    m_transfer.bottomMotorShoot();
+    m_transfer.front();
+    m_transfer.back();
   }
 
   @Override

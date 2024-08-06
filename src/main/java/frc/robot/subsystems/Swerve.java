@@ -12,7 +12,7 @@ public class Swerve extends SubsystemBase {
   /**********swerve motor modules**********/
 
 	private final SwerveModule lf;
-  private final SwerveModule lr;
+  private final SwerveModule lr;  
   private final SwerveModule rf;
   private final SwerveModule rr;
 
