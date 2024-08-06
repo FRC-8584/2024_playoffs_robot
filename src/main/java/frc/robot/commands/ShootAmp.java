@@ -30,11 +30,6 @@ public class ShootAmp extends Command {
 
   @Override
   public void execute() {
-    //1. Is the limelight detected speaker's tag?
-    if(!LimeLight.isDetectedSpeaker()){
-      m_shooter.shoot(0);
-      return;
-    }
 
     //get value
     robotYaw = LimeLight.getAmpYawDegrees();
@@ -77,5 +72,13 @@ public class ShootAmp extends Command {
   @Override
   public void end(boolean interrupted) {
     m_shooter.shoot(0);
+  }
+
+  @Override
+  public boolean isFinished() {
+    if(!LimeLight.isDetectedSpeaker()){
+      return true;
+    }
+    else return false;
   }
 }

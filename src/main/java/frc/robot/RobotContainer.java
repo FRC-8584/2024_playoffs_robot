@@ -48,7 +48,7 @@ public class RobotContainer {
       ()->js1.getRawAxis(4))
     );
     shooter.setDefaultCommand(new JoystickShooter(shooter, ()->js2.getRawAxis(2), ()->js2.getRawAxis(3)).withInterruptBehavior(InterruptionBehavior.kCancelIncoming));
-    shaft.setDefaultCommand(new JoystickShaft(shaft, ()->js2.getY()));
+    shaft.setDefaultCommand(new JoystickShaft(shaft, ()->js2.getY()).withInterruptBehavior(InterruptionBehavior.kCancelIncoming));
     initialize();
     configureBindings();
   }

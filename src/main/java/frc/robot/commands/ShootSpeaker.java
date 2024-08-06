@@ -31,17 +31,11 @@ public class ShootSpeaker extends Command {
 
   @Override
   public void execute() {
-    //1. Is the limelight detected speaker's tag?
-    if(!LimeLight.isDetectedSpeaker()){
-      m_shooter.shoot(0);
-      return;
-    }
-
     //get value
     robotDistance = LimeLight.getSpeakerDistance();
     robotYaw = LimeLight.getSpeakerYawDegrees();
 
-    //2. Is the robot's position able to shoot note into speaker?
+    //1. Is the robot's position able to shoot note into speaker?
     if(robotDistance > Constants.OperatorConstants.MaxShootSpeakerDistance){//distance
       m_shooter.shoot(0);
       return;
@@ -56,7 +50,7 @@ public class ShootSpeaker extends Command {
     shooterPitch = m_shaft.getEncValue()[0] - angle;
     shooterYaw = m_turret.getEncValue();
 
-    //3. Is the shooter's direction able to shoot note into speaker?
+    //2. Is the shooter's direction able to shoot note into speaker?
     if(shooterPitch > 3 || shooterPitch < -3){//pitch
       m_shaft.setPosition(angle);
       m_shooter.shoot(0);
@@ -77,5 +71,13 @@ public class ShootSpeaker extends Command {
   @Override
   public void end(boolean interrupted) {
     m_shooter.shoot(0);
+  }
+
+  @Override
+  public boolean isFinished() {
+    if(!LimeLight.isDetectedSpeaker()){
+      return true;
+    }
+    else return false;
   }
 }

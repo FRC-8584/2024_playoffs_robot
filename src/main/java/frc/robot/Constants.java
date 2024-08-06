@@ -1,8 +1,8 @@
 package frc.robot;
 
 public final class Constants {
-  public static final double Shooter_SpeakerHight = MechanicalConstants.ShooterHight - FieldConstants.SpeakerHight; //mm
-
+  public static final double Shooter_SpeakerHight = FieldConstants.SpeakerHight  - MechanicalConstants.ShooterHight; //mm
+  public static final double Shooter_AmpHight = FieldConstants.AmpHight - MechanicalConstants.ShooterHight; //mm
   public static final double Shooter_LimelightDiscance = 87; //mm
 
   public static class MechanicalConstants {
@@ -19,6 +19,8 @@ public final class Constants {
   public static class FieldConstants {
     public static final double SpeakerHight = 2000; //mm
     public static final double SpeakerTagHight = 9487; //mm
+    public static final double AmpHight = 2000; //mm
+    public static final double AmpTagHight = 2000; //mm
   }
 
   public static class OperatorConstants {
