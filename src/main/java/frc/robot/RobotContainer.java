@@ -18,7 +18,6 @@ import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Transfer;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Shaft;
-import frc.robot.subsystems.Turret;
 import frc.robot.subsystems.Climber;
 
 /*** commands ***/
@@ -35,7 +34,6 @@ public class RobotContainer {
   private final Transfer transfer = new Transfer();
   private final Shooter shooter = new Shooter();
   private final Shaft shaft = new Shaft();
-  private final Turret turret = new Turret();
   private final Climber climber = new Climber();
 
   private final Joystick js1 = new Joystick(Constants.OperatorConstants.Player1Port);

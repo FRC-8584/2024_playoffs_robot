@@ -4,7 +4,6 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Shaft;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Transfer;
-import frc.robot.subsystems.Turret;
 import frc.robot.utils.Tools;
 import frc.robot.Constants;
 import frc.robot.devices.LimeLight;
@@ -13,20 +12,18 @@ public class ShootSpeaker extends Command {
   private Shooter m_shooter;
   private Transfer m_transfer;
   private Shaft m_shaft;
-  private Turret m_turret;
 
   private double shooterPitch, shooterYaw;
   private double robotDistance, robotYaw;
 
   private double angle;
 
-  public ShootSpeaker(Shooter shooter, Transfer transfer, Shaft shaft, Turret turret) {
+  public ShootSpeaker(Shooter shooter, Transfer transfer, Shaft shaft) {
     m_shooter = shooter;
     m_transfer = transfer;
     m_shaft = shaft;
-    m_turret = turret;
 
-    addRequirements(m_shooter, m_transfer, m_shaft, m_turret);
+    addRequirements(m_shooter, m_transfer, m_shaft);
   }
 
   @Override
@@ -48,7 +45,6 @@ public class ShootSpeaker extends Command {
     //get value
     angle = Tools.toDegrees(Constants.Shooter_SpeakerHight, robotDistance);
     shooterPitch = m_shaft.getEncValue()[0] - angle;
-    shooterYaw = m_turret.getEncValue();
 
     //2. Is the shooter's direction able to shoot note into speaker?
     if(shooterPitch > 3 || shooterPitch < -3){//pitch
@@ -57,7 +53,6 @@ public class ShootSpeaker extends Command {
       return;
     }
     if(shooterYaw > 3 || shooterYaw < -3){//yaw
-      m_turret.setPosition(0);
       m_shooter.shoot(0);
       return;
     }
