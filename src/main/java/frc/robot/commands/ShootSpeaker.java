@@ -13,7 +13,7 @@ public class ShootSpeaker extends Command {
   private Transfer m_transfer;
   private Shaft m_shaft;
 
-  private double shooterPitch;
+  private double pitch;
   private double robotDistance, robotYaw;
 
   private double angle;
@@ -36,23 +36,26 @@ public class ShootSpeaker extends Command {
     if(robotDistance > Constants.OperatorConstants.MaxShootSpeakerDistance){//distance
       m_shooter.shoot(0);
       m_transfer.stop();
+
       return;
     }
     if(robotYaw > Constants.OperatorConstants.MaxShootSpeakerYawDegrees && robotYaw < 360 - Constants.OperatorConstants.MaxShootSpeakerYawDegrees){//yaw
       m_shooter.shoot(0);
       m_transfer.stop();
+
       return;
     }
 
     //get value
     angle = Tools.toDegrees(Constants.Shooter_SpeakerHight, robotDistance);
-    shooterPitch = m_shaft.getShaftAngle()[0] - angle;
+    pitch = m_shaft.getShaftAngle()[0] - angle;
 
     //2. Is the shooter's direction able to shoot note into speaker?
-    if(shooterPitch > 3 || shooterPitch < -3){//pitch
+    if(pitch > 3 || pitch < -3){//pitch
       m_shaft.setPosition(angle);
-      m_shooter.shoot(0);
+      m_shooter.shoot(Constants.MechanicalConstants.ShaftAngleRange / Math.abs(pitch));
       m_transfer.stop();
+      
       return;
     }
 
@@ -71,7 +74,7 @@ public class ShootSpeaker extends Command {
     if(!LimeLight.isDetectedSpeaker()){
       return true;
     }
-    
+
     else return false;
   }
 }

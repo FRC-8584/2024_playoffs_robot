@@ -14,7 +14,7 @@ public class ShootAmp extends Command {
   private Shaft m_shaft;
   private Swerve m_swerve;
 
-  private double shooterPitch;
+  private double pitch;
   private double robotYaw;
 
   public ShootAmp(Shooter shooter, Transfer transfer, Shaft shaft) {
@@ -34,23 +34,29 @@ public class ShootAmp extends Command {
     //1. Is the robot's position able to shoot note into speaker?
     if(robotYaw > Constants.OperatorConstants.MaxShootAmpYawDegrees){//yaw
       m_shooter.shoot(0);
+      m_transfer.stop();
       m_swerve.move(-0.3, 0, 0);
+      
       return;
     }
     if(robotYaw < 360 - Constants.OperatorConstants.MaxShootAmpYawDegrees){//yaw
       m_shooter.shoot(0);
+      m_transfer.stop();
       m_swerve.move(0.3, 0, 0);
+
       return;
     }
 
 
     //get value
-    shooterPitch = m_shaft.getShaftAngle()[0] - Constants.OperatorConstants.ShootAmpPitchDegrees;
+    pitch = m_shaft.getShaftAngle()[0] - Constants.OperatorConstants.ShootAmpPitchDegrees;
 
     //2. Is the shooter's direction able to shoot note into speaker?
-    if(shooterPitch > 3 || shooterPitch < -3){//pitch
+    if(pitch > 3 || pitch < -3){//pitch
       m_shaft.setPosition(Constants.OperatorConstants.ShootAmpPitchDegrees);
-      m_shooter.shoot(0);
+      m_shooter.shoot(Constants.OperatorConstants.ShootAmpPwr / 2.0);
+      m_transfer.stop();
+
       return;
     }
 
@@ -62,6 +68,7 @@ public class ShootAmp extends Command {
   @Override
   public void end(boolean interrupted) {
     m_shooter.shoot(0);
+    m_transfer.stop();
   }
 
   @Override
