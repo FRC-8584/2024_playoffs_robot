@@ -31,11 +31,11 @@ public class Shaft extends SubsystemBase {
     LAngle = -(Lmotor.getEncoder().getPosition() - InitLEnc) * 1.6 + Constants.MechanicalConstants.ShaftInitAngle;
     RAngle = (Rmotor.getEncoder().getPosition() - InitREnc) * 1.6 + Constants.MechanicalConstants.ShaftInitAngle;
     
-    double err = Math.abs(LAngle - RAngle);
-    if(err > 3) {
-      Lmotor.set(-Tools.bounding(pid1.calculate(err / Constants.MechanicalConstants.ShaftAngleRange)));
-      Rmotor.set(Tools.bounding(pid1.calculate(err / Constants.MechanicalConstants.ShaftAngleRange)));
-    }
+    // double err = Math.abs(LAngle - RAngle);
+    // if(err > 3) {
+    //   Lmotor.set(-Tools.bounding(pid1.calculate(err / Constants.MechanicalConstants.ShaftAngleRange)));
+    //   Rmotor.set(Tools.bounding(pid1.calculate(err / Constants.MechanicalConstants.ShaftAngleRange)));
+    // }
   }
 
   public void setPosition(double degrees) {
@@ -50,11 +50,11 @@ public class Shaft extends SubsystemBase {
   public void setPower(double force) {
     if(LAngle > Constants.MechanicalConstants.ShaftMaxAngle && force > 0) Lmotor.set(0);
     else if(LAngle < Constants.MechanicalConstants.ShaftMinAngle && force < 0) Lmotor.set(0);
-    else Lmotor.set(-force * 0.2);
+    else Lmotor.set(-force);
 
     if(RAngle > Constants.MechanicalConstants.ShaftMaxAngle && force > 0) Rmotor.set(0);
     else if(RAngle < Constants.MechanicalConstants.ShaftMinAngle && force < 0) Rmotor.set(0);
-    else Rmotor.set(force * 0.2);
+    else Rmotor.set(force);
   }
 
   public double[] getShaftAngle() {

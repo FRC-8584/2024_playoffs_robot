@@ -13,7 +13,7 @@ public class ShootSpeaker extends Command {
   private Transfer m_transfer;
   private Shaft m_shaft;
 
-  private double shooterPitch, shooterYaw;
+  private double shooterPitch;
   private double robotDistance, robotYaw;
 
   private double angle;
@@ -49,10 +49,6 @@ public class ShootSpeaker extends Command {
     //2. Is the shooter's direction able to shoot note into speaker?
     if(shooterPitch > 3 || shooterPitch < -3){//pitch
       m_shaft.setPosition(angle);
-      m_shooter.shoot(0);
-      return;
-    }
-    if(shooterYaw > 3 || shooterYaw < -3){//yaw
       m_shooter.shoot(0);
       return;
     }

@@ -12,8 +12,8 @@ public final class Constants {
     public static final double ShooterHight = 300; //mm
 
     public static final double ShaftInitAngle = 0;
-    public static final double ShaftMinAngle = 0;
-    public static final double ShaftMaxAngle = 90.0;
+    public static final double ShaftMinAngle = 10;
+    public static final double ShaftMaxAngle = 90;
     public static final double ShaftAngleRange = ShaftMaxAngle - ShaftMinAngle;
   }
 
