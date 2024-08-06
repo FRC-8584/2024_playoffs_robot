@@ -35,10 +35,12 @@ public class ShootSpeaker extends Command {
     //1. Is the robot's position able to shoot note into speaker?
     if(robotDistance > Constants.OperatorConstants.MaxShootSpeakerDistance){//distance
       m_shooter.shoot(0);
+      m_transfer.stop();
       return;
     }
     if(robotYaw > Constants.OperatorConstants.MaxShootSpeakerYawDegrees && robotYaw < 360 - Constants.OperatorConstants.MaxShootSpeakerYawDegrees){//yaw
       m_shooter.shoot(0);
+      m_transfer.stop();
       return;
     }
 
@@ -50,13 +52,13 @@ public class ShootSpeaker extends Command {
     if(shooterPitch > 3 || shooterPitch < -3){//pitch
       m_shaft.setPosition(angle);
       m_shooter.shoot(0);
+      m_transfer.stop();
       return;
     }
 
     //get ready to shoot!
     m_shooter.shoot(1);
     m_transfer.front();
-    m_transfer.back();
   }
 
   @Override
@@ -69,6 +71,7 @@ public class ShootSpeaker extends Command {
     if(!LimeLight.isDetectedSpeaker()){
       return true;
     }
+    
     else return false;
   }
 }

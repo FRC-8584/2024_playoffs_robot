@@ -14,7 +14,7 @@ public class ShootAmp extends Command {
   private Shaft m_shaft;
   private Swerve m_swerve;
 
-  private double shooterPitch, shooterYaw;
+  private double shooterPitch;
   private double robotYaw;
 
   public ShootAmp(Shooter shooter, Transfer transfer, Shaft shaft) {
@@ -53,15 +53,10 @@ public class ShootAmp extends Command {
       m_shooter.shoot(0);
       return;
     }
-    if(shooterYaw > 3 || shooterYaw < -3){//yaw
-      m_shooter.shoot(0);
-      return;
-    }
 
     //get ready to shoot!
     m_shooter.shoot(Constants.OperatorConstants.ShootAmpPwr);
     m_transfer.front();
-    m_transfer.back();
   }
 
   @Override
