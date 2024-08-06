@@ -25,8 +25,6 @@ import frc.robot.subsystems.Climber;
 import frc.robot.commands.JoystickSwerve;
 import frc.robot.commands.JoystickShooter;
 import frc.robot.commands.JoystickShaft;
-import frc.robot.commands.ShootSpeaker;
-import frc.robot.commands.ShootAmp;
 
 public class RobotContainer {
   private final Swerve swerve = new Swerve();
