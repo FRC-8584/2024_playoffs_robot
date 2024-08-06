@@ -53,7 +53,7 @@ public class RobotContainer {
 
     // shaft
     shaft.setDefaultCommand(new JoystickShaft(shaft, ()->js2.getY()).withInterruptBehavior(InterruptionBehavior.kCancelIncoming));
-    
+
     initialize();
     configureBindings();
   }
@@ -68,10 +68,10 @@ public class RobotContainer {
     new JoystickButton(js2, 4).whileTrue(transfer.TransferBack.withInterruptBehavior(InterruptionBehavior.kCancelIncoming));
 
     // shoot speaker
-    new JoystickButton(js1, 5).whileTrue(new ShootSpeaker(shooter, transfer, shaft).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
+    // new JoystickButton(js1, 5).whileTrue(new ShootSpeaker(shooter, transfer, shaft).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
 
     // shoot AMP
-    new JoystickButton(js1, 6).whileTrue(new ShootAmp(shooter, transfer, shaft).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
+    // new JoystickButton(js1, 6).whileTrue(new ShootAmp(shooter, transfer, shaft).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
   }
 
   private void initialize(){
