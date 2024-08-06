@@ -10,8 +10,7 @@ import frc.robot.utils.pixy2api.Pixy2CCC;
 import frc.robot.utils.pixy2api.Pixy2CCC.Block;
 
 public class Pixy {
-  public static int t_width, t_height;
-  public static int t_x, t_y;
+  public static int t_x, t_y, t_a;
 
 	private static boolean isInitailized = false;
 
@@ -31,10 +30,9 @@ public class Pixy {
 		}
     biggestBlock = getBiggestBlock();
     if(biggestBlock != null) {
-      t_height = biggestBlock.getHeight();
-      t_width = biggestBlock.getWidth();
-      t_x = biggestBlock.getX();
-      t_y = biggestBlock.getY();
+      t_a = biggestBlock.getHeight() * biggestBlock.getWidth();
+      t_x = biggestBlock.getX() - 315/2;
+      t_y = biggestBlock.getY() - 207/2;
     }
     return;
   }
@@ -46,12 +44,8 @@ public class Pixy {
 		return t_y;
 	}
 	public static  int getWidth() {
-		return t_width;
+		return t_a;
 	}
-	public static  int getHeight() {
-		return t_height;
-	}
-
   private Block getBiggestBlock() {
     // how many
 		int blockCount = pixy.getCCC().getBlocks(false, Pixy2CCC.CCC_SIG1, 25);
