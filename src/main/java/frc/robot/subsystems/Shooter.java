@@ -5,6 +5,7 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.utils.Tools;
 
 public class Shooter extends SubsystemBase {
   private final CANSparkMax topMotor = new CANSparkMax(Constants.MotorControllerID.TopShooterID, MotorType.kBrushless);
@@ -16,6 +17,7 @@ public class Shooter extends SubsystemBase {
   }
 
   public void shoot(double force){
+    force = Tools.deadband(force, 0.05);
     topMotor.set(-force * Constants.MotorConstants.kShooterSpeed);
     bottomMotor.set(force * Constants.MotorConstants.kShooterSpeed);
   }

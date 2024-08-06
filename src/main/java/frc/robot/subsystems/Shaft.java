@@ -48,6 +48,7 @@ public class Shaft extends SubsystemBase {
   }
 
   public void setPower(double force) {
+    force = Tools.deadband(force, 0.05);
     if(LAngle > Constants.MechanicalConstants.ShaftMaxAngle && force > 0) Lmotor.set(0);
     else if(LAngle < Constants.MechanicalConstants.ShaftMinAngle && force < 0) Lmotor.set(0);
     else Lmotor.set(-force);
