@@ -14,7 +14,7 @@ public class Pixy {
 
 	private static boolean isInitailized = false;
 
-  private Block biggestBlock;
+  private static Block biggestBlock;
 
   private Pixy2 pixy = Pixy2.createInstance(LinkType.SPI);
 
@@ -43,9 +43,14 @@ public class Pixy {
 	public static  int getTY() {
 		return t_y;
 	}
-	public static  int getWidth() {
+	public static  int getTA() {
 		return t_a;
 	}
+
+	public static boolean isDetected() {
+		return biggestBlock == null ? false : true;
+	}
+
   private Block getBiggestBlock() {
     // how many
 		int blockCount = pixy.getCCC().getBlocks(false, Pixy2CCC.CCC_SIG1, 25);
