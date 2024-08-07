@@ -80,9 +80,6 @@ public class Pixy {
 			this.imu = imu;
 		}
 
-		/**
-		 * Called periodically in its own thread
-		 */
 		public void run() {
 			imu.update();
 		}

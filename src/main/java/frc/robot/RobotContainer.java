@@ -75,7 +75,6 @@ public class RobotContainer {
 
   private void initialize(){
     Gyro.initialize();
-    Sensor.initailize();
     LimeLight.initialize();
   }
 
