@@ -28,10 +28,10 @@ public class Swerve extends SubsystemBase {
   /**********functions**********/
 
   public Swerve() {
-    lf = new SwerveModule(Constants.MotorControllerID.LF_TurnID, Constants.MotorControllerID.LF_DriveID, new PID(8, 5*1e-3, 0));
-    lr = new SwerveModule(Constants.MotorControllerID.LR_TurnID, Constants.MotorControllerID.LR_DriveID, new PID(8, 5*1e-3, 0));
-    rf = new SwerveModule(Constants.MotorControllerID.RF_TurnID, Constants.MotorControllerID.RF_DriveID, new PID(8, 5*1e-3, 0));
-    rr = new SwerveModule(Constants.MotorControllerID.RR_TurnID, Constants.MotorControllerID.RR_DriveID, new PID(8, 5*1e-3, 0));
+    lf = new SwerveModule(Constants.MotorControllerID.LF_TurnID, Constants.MotorControllerID.LF_DriveID, new PID(3, 2*1e-3, 0));
+    lr = new SwerveModule(Constants.MotorControllerID.LR_TurnID, Constants.MotorControllerID.LR_DriveID, new PID(3, 2*1e-3, 0));
+    rf = new SwerveModule(Constants.MotorControllerID.RF_TurnID, Constants.MotorControllerID.RF_DriveID, new PID(3, 2*1e-3, 0));
+    rr = new SwerveModule(Constants.MotorControllerID.RR_TurnID, Constants.MotorControllerID.RR_DriveID, new PID(3, 2*1e-3, 0));
 
     lf.setName("Left_front");
     lr.setName("Left_rear");
