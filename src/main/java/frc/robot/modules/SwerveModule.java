@@ -28,8 +28,6 @@ public class SwerveModule {
 		this.pid = pid;
 		this.pid.setDeadband(0.01);
 
-		invert = 1;
-
 		turningMotor.configSelectedFeedbackSensor(FeedbackDevice.Analog);
 		invert = 1;
 	}
