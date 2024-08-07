@@ -29,7 +29,7 @@ public class ShootAmp extends Command {
   public void execute() {
 
     //get value
-    robotYaw = LimeLight.getAmpYawDegrees();
+    robotYaw = LimeLight.getTY();
 
     //1. Is the robot's position able to shoot note into speaker?
     if(robotYaw > Constants.OperatorConstants.MaxShootAmpYawDegrees){//yaw
@@ -73,7 +73,7 @@ public class ShootAmp extends Command {
 
   @Override
   public boolean isFinished() {
-    if(!LimeLight.isDetectedSpeaker()){
+    if(!LimeLight.isDetectedAmp()){
       return true;
     }
     else return false;

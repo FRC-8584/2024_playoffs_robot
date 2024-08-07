@@ -7,35 +7,46 @@ import frc.robot.devices.Pixy;
 import frc.robot.devices.Sensor;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Swerve;
+import frc.robot.subsystems.Transfer;
 import frc.robot.utils.PID;
 
 public class GetNote extends Command {
   private Intake m_intake;
+  private Transfer m_transfer;
   private Swerve m_swerve;
+
+  private Supplier<Double> m_x;
+  private Supplier<Double> m_y;
 
   private PID pid = new PID(0.4, 0, 0);
 
-  public GetNote(Intake intake, Swerve swerve) {
+  public GetNote(Intake intake, Swerve swerve, Transfer transfer, Supplier<Double> x, Supplier<Double> y) {
     m_intake = intake;
     m_swerve = swerve;
+    m_transfer = transfer;
+    m_x = x;
+    m_y = y;
     addRequirements(m_intake, m_swerve);
   }
 
   @Override
   public void execute() {
     if(Pixy.isDetected()) {
-      m_swerve.move(0, 0.4, pid.calculate(Pixy.getTX() / (315 / 2)));
+      m_swerve.move(0, m_y.get(), pid.calculate(Pixy.getTX() / (315 / 2)));
+      m_transfer.front();
       m_intake.set(1.0);
     }
     else {
-      m_swerve.move(0, 0.4, 0);
+      m_swerve.move(m_x.get(), m_y.get(), 0);
+      m_transfer.front();
       m_intake.set(1.0);
     }
   }
 
   @Override
   public void end(boolean interrupted) {
-    
+    m_intake.set(0);
+    m_transfer.stop();
   }
 
   @Override

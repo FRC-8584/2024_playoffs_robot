@@ -24,6 +24,7 @@ import frc.robot.subsystems.Shaft;
 /*** commands ***/
 
 import frc.robot.commands.JoystickSwerve;
+import frc.robot.commands.GetNote;
 import frc.robot.commands.ShootSpeaker;
 import frc.robot.commands.ShootAmp;
 import frc.robot.commands.JoystickShooter;
@@ -73,6 +74,9 @@ public class RobotContainer {
 
     // shoot AMP
     // new JoystickButton(js1, 6).whileTrue(new ShootAmp(shooter, transfer, shaft).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
+
+    // get note
+    // new JoystickButton(js1, 1).whileTrue(new GetNote(intake, swerve, transfer, ()->js1.getX(), ()->js1.getY()));
   }
 
   private void initialize(){

@@ -26,7 +26,7 @@ public class TransferSensor {
     }
 
     public void update() {
-      isdetected = input.get();
+      isdetected = !input.get();
       SmartDashboard.putBoolean("Sensor", isdetected);
     }
 
