@@ -4,6 +4,7 @@ import java.util.TimerTask;
 
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
 
 public class LimelightHelpers {
@@ -30,6 +31,12 @@ public class LimelightHelpers {
     tx = table.getEntry("tx").getDouble(0.0);
     tid = table.getEntry("tid").getDoubleArray(new double[6]);
     isDetected = (tx == 0) && (ty == 0) ? false : true;
+
+    SmartDashboard.putNumber("TID", tid[0]);
+    SmartDashboard.putBoolean("Detected speaker ?", (tid[0] == 4 || tid[0] == 8) ? true : false);
+    SmartDashboard.putBoolean("Detected Amp ?", (tid[0] == 5 || tid[0] == 6) ? true : false);
+    SmartDashboard.putNumber("TX", tx);
+    SmartDashboard.putNumber("TY", ty);
   }
 
   public double getDistance() {

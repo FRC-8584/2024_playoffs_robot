@@ -1,8 +1,4 @@
 package frc.robot.devices;
-
-import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableInstance;
-import frc.robot.Constants;
 import frc.robot.utils.LimelightHelpers;
 
 public class LimeLight {
