@@ -23,8 +23,14 @@ public class GetNote extends Command {
 
   @Override
   public void execute() {
-    m_swerve.move(Math.abs(0.4), 0, pid.calculate(Pixy.getTX() / (315 / 2)));
-    m_intake.set(1.0);
+    if(Pixy.isDetected()) {
+      m_swerve.move(0, 0.4, pid.calculate(Pixy.getTX() / (315 / 2)));
+      m_intake.set(1.0);
+    }
+    else {
+      m_swerve.move(0, 0.4, 0);
+      m_intake.set(1.0);
+    }
   }
 
   @Override
@@ -34,7 +40,7 @@ public class GetNote extends Command {
 
   @Override
   public boolean isFinished() {
-    if (!Pixy.isDetected() || Pixy.getTA() < 250 || Sensor.TransferSensor.isDetected()) return true;
+    if (Sensor.TransferSensor.isDetected()) return true;
     else return true;
   }
 }
