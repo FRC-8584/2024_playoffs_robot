@@ -20,6 +20,7 @@ public class SwerveModule {
 	private double invert;
 
 	private double turnValue;
+	private double invert;
 
 	/**********functions**********/
 
@@ -32,6 +33,7 @@ public class SwerveModule {
 		invert = 1;
 
 		turningMotor.configSelectedFeedbackSensor(FeedbackDevice.Analog);
+		invert = 1;
 	}
 
 	public void update() {
@@ -54,20 +56,10 @@ public class SwerveModule {
 		error = error > 180 ? error - 360 : error;
 		error = error < -180 ? error + 360 : error;
 
-		if(-90 <= error && error < 90){}
-		else if(90 <= error && error < 180){
-			error -= 180;
-			invert *= -1.0;
-		}
-		else if(-180 <= error && error < -90){
-			error += 180;
-			invert *= -1.0;
-		}
+		error /= 180.0;
 
-		error /= 90.0;
-
-		final double turnPower = Tools.bounding(pid.calculate(error));
-		final double drivePower = invert * speed;
+		final double turnPower = Tools.bounding(pid.calculate(error), -1, 1);
+		final double drivePower = speed * (1 - Math.abs(error));
 
 		turningMotor.set(TalonSRXControlMode.PercentOutput, -turnPower);
 		driveMotor.set(drivePower);

@@ -61,6 +61,15 @@ public class RobotContainer {
   }
 
   private void configureBindings() {
+    // shoot speaker
+    new JoystickButton(js1, 5).whileTrue(new ShootSpeaker(shooter, transfer, shaft).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
+
+    // shoot AMP
+    new JoystickButton(js1, 6).whileTrue(new ShootAmp(shooter, transfer, shaft).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
+
+    // get note
+    new JoystickButton(js1, 1).whileTrue(new GetNote(intake, swerve, transfer, ()->js1.getX(), ()->js1.getY()).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
+
     // intake
     new JoystickButton(js2, 1).whileTrue(intake.IntakeIn.withInterruptBehavior(InterruptionBehavior.kCancelIncoming));
     new JoystickButton(js2, 3).whileTrue(intake.IntakeOut.withInterruptBehavior(InterruptionBehavior.kCancelIncoming));
@@ -68,22 +77,13 @@ public class RobotContainer {
     // transfer
     new JoystickButton(js2, 2).whileTrue(transfer.TransferFront.withInterruptBehavior(InterruptionBehavior.kCancelIncoming));
     new JoystickButton(js2, 4).whileTrue(transfer.TransferBack.withInterruptBehavior(InterruptionBehavior.kCancelIncoming));
-
-    // shoot speaker
-    // new JoystickButton(js1, 5).whileTrue(new ShootSpeaker(shooter, transfer, shaft).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
-
-    // shoot AMP
-    // new JoystickButton(js1, 6).whileTrue(new ShootAmp(shooter, transfer, shaft).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
-
-    // get note
-    // new JoystickButton(js1, 1).whileTrue(new GetNote(intake, swerve, transfer, ()->js1.getX(), ()->js1.getY()));
   }
 
   private void initialize(){
     Pixy.init();
-    Gyro.initialize();
+    Gyro.init();
     Sensor.init();
-    LimeLight.initialize();
+    LimeLight.init();
   }
 
   public Command getAutonomousCommand() {
