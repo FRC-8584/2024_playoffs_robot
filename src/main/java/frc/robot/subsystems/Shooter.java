@@ -19,6 +19,6 @@ public class Shooter extends SubsystemBase {
   public void shoot(double force){
     force = Tools.deadband(force, 0.05);
     topMotor.set(force * Constants.MotorConstants.kShooterSpeed);
-    bottomMotor.set(force * Constants.MotorConstants.kShooterSpeed);
+    bottomMotor.set(-force * Constants.MotorConstants.kShooterSpeed);
   }
 }

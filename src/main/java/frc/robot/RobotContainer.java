@@ -78,7 +78,7 @@ public class RobotContainer {
   private void initialize(){
     Pixy.init();
     Gyro.initialize();
-    Sensor.TransferSensor.init();
+    Sensor.init();
     LimeLight.initialize();
   }
 

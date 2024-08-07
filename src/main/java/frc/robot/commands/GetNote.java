@@ -40,7 +40,7 @@ public class GetNote extends Command {
 
   @Override
   public boolean isFinished() {
-    if (Sensor.TransferSensor.isDetected()) return true;
+    if (Sensor.isDetected()) return true;
     else return true;
   }
 }

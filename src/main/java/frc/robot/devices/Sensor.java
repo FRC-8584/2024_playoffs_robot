@@ -1,23 +1,15 @@
 package frc.robot.devices;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
-import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.DigitalOutput;
+import frc.robot.utils.TransferSensor;
 
 public class Sensor {
 
-  public class TransferSensor {
-    private static final DigitalOutput output = new DigitalOutput(1);
-    private static final DigitalInput input = new DigitalInput(0);
+  private static TransferSensor transferSensor = new TransferSensor(0, 1);
 
-    public static void init() {
-      TransferSensor.output.set(true);
-    }
+  public static void init() {}
 
-    public static boolean isDetected() {
-      return input.get();
-    }
+  public static boolean isDetected() {
+    return transferSensor.isDetected();
   }
+
 }
