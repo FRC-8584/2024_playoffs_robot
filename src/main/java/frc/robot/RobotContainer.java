@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
 import frc.robot.devices.Gyro;
 import frc.robot.devices.LimeLight;
+import frc.robot.devices.Pixy;
 // import frc.robot.devices.Pixy;
 import frc.robot.devices.Sensor;
 
@@ -15,6 +16,7 @@ import frc.robot.devices.Sensor;
 import frc.robot.subsystems.Swerve;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Transfer;
+import frc.robot.utils.PixyUtil;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Shaft;
 // import frc.robot.subsystems.Climber;
@@ -74,7 +76,9 @@ public class RobotContainer {
   }
 
   private void initialize(){
+    Pixy.init();
     Gyro.initialize();
+    Sensor.TransferSensor.init();
     LimeLight.initialize();
   }
 
