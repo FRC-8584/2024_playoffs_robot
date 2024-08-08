@@ -47,6 +47,7 @@ public class GetNote extends Command {
 
   @Override
   public void end(boolean interrupted) {
+    m_swerve.move(m_x.get(), m_y.get(), m_turn.get());
     m_intake.set(0);
     m_transfer.stop();
   }

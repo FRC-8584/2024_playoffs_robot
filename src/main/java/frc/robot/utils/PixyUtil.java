@@ -32,7 +32,7 @@ public class PixyUtil {
     if(biggestBlock != null) {
       t_a = biggestBlock.getHeight() * biggestBlock.getWidth();
       t_x = biggestBlock.getX() - 315/2;
-      t_y = biggestBlock.getY() - 207/2;
+      t_y = Math.abs(biggestBlock.getY() - 207) - 207/2;
     }
     else {
       t_a = 0;
