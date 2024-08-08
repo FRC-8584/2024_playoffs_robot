@@ -8,9 +8,9 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Climber extends SubsystemBase {
-  private CANSparkMax Lmotor = new CANSparkMax(16, MotorType.kBrushed);
+  private CANSparkMax Lmotor = new CANSparkMax(18, MotorType.kBrushed);
   private CANSparkMax Rmotor = new CANSparkMax(17, MotorType.kBrushed);
-    private VictorSPX Backmotor = new VictorSPX(15);
+  private VictorSPX Backmotor = new VictorSPX(16);
 
   public Climber() {
   }
