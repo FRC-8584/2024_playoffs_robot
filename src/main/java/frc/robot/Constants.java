@@ -12,11 +12,11 @@ public final class Constants {
 
     public static final double ShooterHight = 430; //mm
 
-    public static final double LimelightAngle = 30; //degrees
+    public static final double LimelightAngle = 25; //degrees
     public static final double LimelightHight = 400; //mm 
 
     public static final double ShaftInitAngle = 30;
-    public static final double ShaftMinAngle = 35;
+    public static final double ShaftMinAngle = 30;
     public static final double ShaftMaxAngle = 90;
     public static final double ShaftAngleRange = ShaftMaxAngle - ShaftMinAngle;
   }
@@ -73,8 +73,8 @@ public final class Constants {
   //motor speed constants
   public static class MotorConstants {
     public static final double kIntakeSpeed = 1.0;
-    public static final double kTopTransferSpeed = 0.1;
-    public static final double kBottomTransferSpeed = 1.0;
+    public static final double kTopTransferSpeed = 0;
+    public static final double kBottomTransferSpeed = 0.3;
     public static final double kShooterSpeed = 1.0;
     public static final double kShaftSpeed = 1.0;
     public static final double kTurretSpeed = 0.5;
