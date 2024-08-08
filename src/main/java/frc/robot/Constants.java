@@ -15,8 +15,8 @@ public final class Constants {
     public static final double LimelightAngle = 25; //degrees
     public static final double LimelightHight = 400; //mm 
 
-    public static final double ShaftInitAngle = 30;
-    public static final double ShaftMinAngle = 30;
+    public static final double ShaftInitAngle = 5;
+    public static final double ShaftMinAngle = 5;
     public static final double ShaftMaxAngle = 90;
     public static final double ShaftAngleRange = ShaftMaxAngle - ShaftMinAngle;
   }

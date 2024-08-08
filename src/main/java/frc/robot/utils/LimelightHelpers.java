@@ -13,9 +13,10 @@ public class LimelightHelpers {
 
   private boolean isDetected = false;
   private double tx, ty, d;
-  private double[] tid;
+  private long tid;
 
   private final long THREAD_PERIOD = 20;
+  private final long DEFAULT = 0;
 
   private NetworkTable table;
 
@@ -29,12 +30,12 @@ public class LimelightHelpers {
     d = (Constants.FieldConstants.SpeakerTagHight - Constants.MechanicalConstants.LimelightHight) / Math.tan((ty + Constants.MechanicalConstants.LimelightAngle) / 180 * 3.1415926);
     ty = table.getEntry("ty").getDouble(0.0);
     tx = table.getEntry("tx").getDouble(0.0);
-    tid = table.getEntry("tid").getDoubleArray(new double[6]);
-    isDetected = (tx == 0) && (ty == 0) ? false : true;
+    tid = table.getEntry("tid").getInteger(DEFAULT);
+    isDetected = tid == -1 ? false : true;
 
-    SmartDashboard.putNumber("TID", tid[0]);
-    SmartDashboard.putBoolean("Detected speaker ?", (tid[0] == 4 || tid[0] == 8) ? true : false);
-    SmartDashboard.putBoolean("Detected Amp ?", (tid[0] == 5 || tid[0] == 6) ? true : false);
+    SmartDashboard.putNumber("TID", tid);
+    SmartDashboard.putBoolean("Detected speaker ?", (tid == 4 || tid == 8) ? true : false);
+    SmartDashboard.putBoolean("Detected Amp ?", (tid == 5 || tid == 6) ? true : false);
     SmartDashboard.putNumber("TX", tx);
     SmartDashboard.putNumber("TY", ty);
   }
@@ -52,11 +53,7 @@ public class LimelightHelpers {
   }
 
   public double getTid() {
-    return tid[0];
-  }
-
-  public boolean isDetected(){
-    return isDetected;
+    return tid;
   }
 
   private class LimelightUpdateTask extends TimerTask {

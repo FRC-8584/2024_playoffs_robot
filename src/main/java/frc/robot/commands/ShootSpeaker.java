@@ -29,8 +29,8 @@ public class ShootSpeaker extends Command {
   @Override
   public void execute() {
     //get value
-    robotDistance = LimeLight.getDistance();
-    robotYaw = LimeLight.getTY();
+    robotDistance = LimeLight.getDistance() + Constants.Shooter_LimelightDiscance;
+    robotYaw = LimeLight.getTX();
 
     //1. Is the robot's position able to shoot note into speaker?
     if(robotDistance > Constants.OperatorConstants.MaxShootSpeakerDistance){//distance
