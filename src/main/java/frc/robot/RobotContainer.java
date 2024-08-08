@@ -1,7 +1,9 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.PrintCommand;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.Command.InterruptionBehavior;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
@@ -26,6 +28,8 @@ import frc.robot.subsystems.Shaft;
 import frc.robot.commands.JoystickSwerve;
 import frc.robot.commands.GetNote;
 import frc.robot.commands.ShootSpeaker;
+import frc.robot.commands.autos.AutoGetNote;
+import frc.robot.commands.autos.AutoMove;
 import frc.robot.commands.ShootAmp;
 import frc.robot.commands.JoystickShooter;
 import frc.robot.commands.JoystickShaft;
@@ -87,6 +91,8 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-    return new PrintCommand("Auto");
+    return Commands.sequence(
+
+    );
   }
 }
