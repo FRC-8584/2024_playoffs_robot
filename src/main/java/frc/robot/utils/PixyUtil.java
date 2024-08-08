@@ -11,7 +11,7 @@ import frc.robot.utils.pixy2api.Pixy2CCC;
 import frc.robot.utils.pixy2api.Pixy2CCC.Block;
 
 public class PixyUtil {
-  public int t_x, t_y, t_a;
+  public int t_x, t_a;
 
   private Block biggestBlock;
 
@@ -32,21 +32,18 @@ public class PixyUtil {
     if(biggestBlock != null) {
       t_a = biggestBlock.getHeight() * biggestBlock.getWidth();
       t_x = biggestBlock.getX() - 315/2 + biggestBlock.getWidth()/2;
-      t_y = Math.abs(biggestBlock.getY() - 207) - 207/2;
     }
     else {
       t_a = 0;
       t_x = 0;
-      t_y = 0;
     }
     SmartDashboard.putNumber("Pixy ta", t_a);
     SmartDashboard.putNumber("Pixy tx", t_x);
-    SmartDashboard.putNumber("Pixy ty", t_y);
     return;
   }
 
 	public  int[] getValue() {
-		return new int[] {t_a, t_x, t_y};
+		return new int[] {t_a, t_x};
 	}
 
 	public  boolean isDetected() {

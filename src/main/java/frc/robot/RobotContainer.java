@@ -71,11 +71,9 @@ public class RobotContainer {
     // get note
     new JoystickButton(js1, 1).whileTrue(new GetNote(intake, swerve, transfer, ()->js1.getX(), ()->js1.getY(), ()->js1.getRawAxis(4)).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
 
-    // intake
+    // transfer
     new JoystickButton(js2, 1).whileTrue(transfer.intakeIn.withInterruptBehavior(InterruptionBehavior.kCancelIncoming));
     new JoystickButton(js2, 3).whileTrue(transfer.intakeOut.withInterruptBehavior(InterruptionBehavior.kCancelIncoming));
-
-    // transfer
     new JoystickButton(js2, 2).whileTrue(transfer.shooterOut.withInterruptBehavior(InterruptionBehavior.kCancelIncoming));
     new JoystickButton(js2, 4).whileTrue(transfer.shooterIn.withInterruptBehavior(InterruptionBehavior.kCancelIncoming));
   }

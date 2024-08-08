@@ -33,8 +33,8 @@ public class Transfer extends SubsystemBase {
   }
 
   public void shooterOut() {
-    topMotor.set(Constants.MotorConstants.kTopTransferSpeed);
-    bottomMotor.set(Constants.MotorConstants.kBottomTransferSpeed);
+    topMotor.set(-Constants.MotorConstants.kTopTransferSpeed);
+    bottomMotor.set(-Constants.MotorConstants.kBottomTransferSpeed);
   }
 
   public void stop() {
