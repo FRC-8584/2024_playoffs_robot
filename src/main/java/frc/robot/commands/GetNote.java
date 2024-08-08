@@ -40,12 +40,12 @@ public class GetNote extends Command {
   public void execute() {
     if(Pixy.isDetected()) {
       m_swerve.move(0, 0.5, pid.calculate(Pixy.getTX() / (315 / 2)));
-      m_transfer.front();
+      m_transfer.intakeIn();;
       m_intake.set(1.0);
     }
     else {
       m_swerve.move(m_x.get(), m_y.get(), m_turn.get());
-      m_transfer.front();
+      m_transfer.intakeIn();;
       m_intake.set(1.0);
     }
   }

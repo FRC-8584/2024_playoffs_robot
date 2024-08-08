@@ -31,10 +31,14 @@ public class Shaft extends SubsystemBase {
     LAngle = -(Lmotor.getEncoder().getPosition() - InitLEnc) * 1.6 + Constants.MechanicalConstants.ShaftInitAngle;
     RAngle = (Rmotor.getEncoder().getPosition() - InitREnc) * 1.6 + Constants.MechanicalConstants.ShaftInitAngle;
     
-    double err = Math.abs(LAngle - RAngle);
+    double err = LAngle - RAngle;
     if(err > 3) {
-      Lmotor.set(-Tools.bounding(pid1.calculate(err / Constants.MechanicalConstants.ShaftAngleRange)));
+      Lmotor.set(-Tools.bounding(pid1.calculate(-err / Constants.MechanicalConstants.ShaftAngleRange)));
       Rmotor.set(Tools.bounding(pid1.calculate(err / Constants.MechanicalConstants.ShaftAngleRange)));
+    }
+    else if(err < -3){
+      Lmotor.set(-Tools.bounding(pid1.calculate(err / Constants.MechanicalConstants.ShaftAngleRange)));
+      Rmotor.set(Tools.bounding(pid1.calculate(-err / Constants.MechanicalConstants.ShaftAngleRange)));
     }
   }
 

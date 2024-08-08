@@ -17,12 +17,22 @@ public class Transfer extends SubsystemBase {
   @Override
   public void periodic() {}
 
-  public void front() {
-    topMotor.set(-Constants.MotorConstants.kTopTransferSpeed);
-    bottomMotor.set(-Constants.MotorConstants.kBottomTransferSpeed);
+  public void intakeIn() {
+    topMotor.set(-1);
+    bottomMotor.set(-1);
   }
 
-  public void back() {
+  public void intakeOut() {
+    topMotor.set(1);
+    bottomMotor.set(1);
+  }
+
+  public void shooterIn() {
+    topMotor.set(Constants.MotorConstants.kTopTransferSpeed);
+    bottomMotor.set(Constants.MotorConstants.kBottomTransferSpeed);
+  }
+
+  public void shooterOut() {
     topMotor.set(Constants.MotorConstants.kTopTransferSpeed);
     bottomMotor.set(Constants.MotorConstants.kBottomTransferSpeed);
   }
@@ -32,6 +42,8 @@ public class Transfer extends SubsystemBase {
     bottomMotor.set(0);
   }
 
-  public Command TransferFront = new StartEndCommand(()->this.front(), ()->this.stop(), this);
-  public Command TransferBack = new StartEndCommand(()->this.back(), ()->this.stop(), this);
+  public Command shooterOut = new StartEndCommand(()->this.shooterOut(), ()->this.stop(), this);
+  public Command shooterIn = new StartEndCommand(()->this.shooterIn(), ()->this.stop(), this);
+  public Command intakeOut = new StartEndCommand(()->this.intakeOut(), ()->this.stop(), this);
+  public Command intakeIn = new StartEndCommand(()->this.intakeIn(), ()->this.stop(), this);
 }

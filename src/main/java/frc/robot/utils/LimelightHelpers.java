@@ -22,7 +22,7 @@ public class LimelightHelpers {
   public LimelightHelpers() {
     table = NetworkTableInstance.getDefault().getTable("limelight");
     executor = new java.util.Timer();
-    executor.schedule(new LimelightUpdateTask(null) ,0L, THREAD_PERIOD);
+    executor.schedule(new LimelightUpdateTask(this) ,0L, THREAD_PERIOD);
   }
 
   private void update() {

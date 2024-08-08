@@ -22,7 +22,7 @@ public final class Constants {
   }
 
   public static class FieldConstants {
-    public static final double SpeakerHight = 2000; //mm
+    public static final double SpeakerHight = 1980; //mm
     public static final double SpeakerTagHight = 9487; //mm
     public static final double AmpHight = 2000; //mm
     public static final double AmpTagHight = 2000; //mm
@@ -73,7 +73,7 @@ public final class Constants {
   //motor speed constants
   public static class MotorConstants {
     public static final double kIntakeSpeed = 1.0;
-    public static final double kTopTransferSpeed = 1.0;
+    public static final double kTopTransferSpeed = 0.1;
     public static final double kBottomTransferSpeed = 1.0;
     public static final double kShooterSpeed = 1.0;
     public static final double kShaftSpeed = 1.0;
