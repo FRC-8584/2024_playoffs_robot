@@ -4,7 +4,6 @@ import java.util.function.Supplier;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.devices.Pixy;
-import frc.robot.devices.Sensor;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Swerve;
 import frc.robot.subsystems.Transfer;
@@ -21,7 +20,13 @@ public class GetNote extends Command {
 
   private PID pid = new PID(0.4, 0, 0);
 
-  public GetNote(Intake intake, Swerve swerve, Transfer transfer, Supplier<Double> x, Supplier<Double> y, Supplier<Double> turn) {
+  public GetNote(Intake intake, 
+    Swerve swerve, 
+    Transfer transfer, 
+    Supplier<Double> x, 
+    Supplier<Double> y, 
+    Supplier<Double> turn) 
+  {
     m_intake = intake;
     m_swerve = swerve;
     m_transfer = transfer;
@@ -47,14 +52,7 @@ public class GetNote extends Command {
 
   @Override
   public void end(boolean interrupted) {
-    m_swerve.move(m_x.get(), m_y.get(), m_turn.get());
     m_intake.set(0);
     m_transfer.stop();
-  }
-
-  @Override
-  public boolean isFinished() {
-    if (Sensor.isDetected()) return true;
-    else return true;
   }
 }
