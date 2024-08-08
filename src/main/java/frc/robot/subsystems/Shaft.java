@@ -13,7 +13,7 @@ public class Shaft extends SubsystemBase {
   private final CANSparkMax Rmotor = new CANSparkMax(Constants.MotorControllerID.RShaftID, MotorType.kBrushless);
 
   private final PID pid1 = new PID(0.1, 0, 0);
-  private final PID pid2 = new PID(0.5, 1e-2, 0);
+  private final PID pid2 = new PID(0.5, 2 *1e-3, 0);
 
   private final double InitLEnc;
   private final double InitREnc;

@@ -26,7 +26,7 @@ public class LimelightHelpers {
   }
 
   private void update() {
-    d = (Constants.FieldConstants.SpeakerTagHight - Constants.OperatorConstants.LimelightHight) / Math.tan((ty + Constants.OperatorConstants.LimelightAngle) / 180 * 3.1415926);
+    d = (Constants.FieldConstants.SpeakerTagHight - Constants.MechanicalConstants.LimelightHight) / Math.tan((ty + Constants.MechanicalConstants.LimelightAngle) / 180 * 3.1415926);
     ty = table.getEntry("ty").getDouble(0.0);
     tx = table.getEntry("tx").getDouble(0.0);
     tid = table.getEntry("tid").getDoubleArray(new double[6]);

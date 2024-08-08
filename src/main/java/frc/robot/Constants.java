@@ -3,16 +3,20 @@ package frc.robot;
 public final class Constants {
   public static final double Shooter_SpeakerHight = FieldConstants.SpeakerHight  - MechanicalConstants.ShooterHight; //mm
   public static final double Shooter_AmpHight = FieldConstants.AmpHight - MechanicalConstants.ShooterHight; //mm
-  public static final double Shooter_LimelightDiscance = 87; //mm
+  public static final double Shooter_LimelightDiscance = 250; //mm
 
   public static class MechanicalConstants {
     public static final double RobotLength = 1.0;
     public static final double RobotWidth = 1.0;
     public static final double r = Math.sqrt(Math.pow(RobotLength ,2) + Math.pow(RobotWidth ,2));
-    public static final double ShooterHight = 300; //mm
 
-    public static final double ShaftInitAngle = 0;
-    public static final double ShaftMinAngle = 10;
+    public static final double ShooterHight = 430; //mm
+
+    public static final double LimelightAngle = 30; //degrees
+    public static final double LimelightHight = 400; //mm 
+
+    public static final double ShaftInitAngle = 30;
+    public static final double ShaftMinAngle = 35;
     public static final double ShaftMaxAngle = 90;
     public static final double ShaftAngleRange = ShaftMaxAngle - ShaftMinAngle;
   }
@@ -30,9 +34,6 @@ public final class Constants {
 
     public static final double kMove = 0.5;
     public static final double kTrun = 0.5;
-
-    public static final double LimelightAngle = 9487; //degrees
-    public static final double LimelightHight = 9487; //mm 
 
     public static final double OriginRobotHeading = 0; //degrees
     public static final double DriverHeading = 0; //degrees
