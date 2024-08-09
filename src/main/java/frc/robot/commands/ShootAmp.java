@@ -62,7 +62,7 @@ public class ShootAmp extends Command {
 
     //get ready to shoot!
     m_shooter.shoot(Constants.OperatorConstants.ShootAmpPwr);
-    m_transfer.shooterOut();
+    m_transfer.shooterForword();
   }
 
   @Override

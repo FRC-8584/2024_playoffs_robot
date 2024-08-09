@@ -21,7 +21,7 @@ public class LimelightHelpers {
   private NetworkTable table;
 
   public LimelightHelpers() {
-    table = NetworkTableInstance.getDefault().getTable("limelight");
+    table = NetworkTableInstance.getDefault().getTable("8584");
     executor = new java.util.Timer();
     executor.schedule(new LimelightUpdateTask(this) ,0L, THREAD_PERIOD);
   }

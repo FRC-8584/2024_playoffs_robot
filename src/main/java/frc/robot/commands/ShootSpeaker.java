@@ -28,11 +28,18 @@ public class ShootSpeaker extends Command {
 
   @Override
   public void execute() {
+    //1. is detected note?
+    if(!LimeLight.isDetectedSpeaker()) {
+      m_transfer.stop();
+      m_shooter.shoot(0);
+      return;
+    }
+
     //get value
     robotDistance = LimeLight.getDistance() + Constants.Shooter_LimelightDiscance;
     robotYaw = LimeLight.getTX();
 
-    //1. Is the robot's position able to shoot note into speaker?
+    //2. Is the robot's position able to shoot note into speaker?
     if(robotDistance > Constants.OperatorConstants.MaxShootSpeakerDistance){//distance
       m_shooter.shoot(0);
       m_transfer.stop();
@@ -50,7 +57,7 @@ public class ShootSpeaker extends Command {
     angle = Tools.toDegrees(Constants.Shooter_SpeakerHight, robotDistance);
     pitch = m_shaft.getShaftAngle()[0] - angle;
 
-    //2. Is the shooter's direction able to shoot note into speaker?
+    //3. Is the shooter's direction able to shoot note into speaker?
     if(pitch > 3 || pitch < -3){//pitch
       m_shaft.setPosition(angle);
       m_shooter.shoot(Constants.MechanicalConstants.ShaftAngleRange / Math.abs(pitch));
@@ -61,7 +68,7 @@ public class ShootSpeaker extends Command {
 
     //get ready to shoot!
     m_shooter.shoot(1);
-    m_transfer.shooterOut();
+    m_transfer.shooterForword();
   }
 
   @Override

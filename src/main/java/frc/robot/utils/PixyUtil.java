@@ -39,6 +39,7 @@ public class PixyUtil {
     }
     SmartDashboard.putNumber("Pixy ta", t_a);
     SmartDashboard.putNumber("Pixy tx", t_x);
+	SmartDashboard.putBoolean("is pixy detected", biggestBlock != null ? true :false);
     return;
   }
 

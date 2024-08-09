@@ -17,22 +17,22 @@ public class Transfer extends SubsystemBase {
   @Override
   public void periodic() {}
 
-  public void intakeIn() {
+  public void intakeForword() {
     topMotor.set(-1);
     bottomMotor.set(-1);
   }
 
-  public void intakeOut() {
+  public void intakeReverse() {
     topMotor.set(1);
     bottomMotor.set(1);
   }
 
-  public void shooterIn() {
+  public void shooterReverse() {
     topMotor.set(Constants.MotorConstants.kTopTransferSpeed);
     bottomMotor.set(Constants.MotorConstants.kBottomTransferSpeed);
   }
 
-  public void shooterOut() {
+  public void shooterForword() {
     topMotor.set(-Constants.MotorConstants.kTopTransferSpeed);
     bottomMotor.set(-Constants.MotorConstants.kBottomTransferSpeed);
   }
@@ -42,8 +42,8 @@ public class Transfer extends SubsystemBase {
     bottomMotor.set(0);
   }
 
-  public Command shooterOut = new StartEndCommand(()->this.shooterOut(), ()->this.stop(), this);
-  public Command shooterIn = new StartEndCommand(()->this.shooterIn(), ()->this.stop(), this);
-  public Command intakeOut = new StartEndCommand(()->this.intakeOut(), ()->this.stop(), this);
-  public Command intakeIn = new StartEndCommand(()->this.intakeIn(), ()->this.stop(), this);
+  public Command shooterForword = new StartEndCommand(()->this.shooterForword(), ()->this.stop(), this);
+  public Command shooterReverse = new StartEndCommand(()->this.shooterReverse(), ()->this.stop(), this);
+  public Command intakeReverse = new StartEndCommand(()->this.intakeReverse(), ()->this.stop(), this);
+  public Command intakeForword = new StartEndCommand(()->this.intakeForword(), ()->this.stop(), this);
 }

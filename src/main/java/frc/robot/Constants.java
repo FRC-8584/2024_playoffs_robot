@@ -26,14 +26,17 @@ public final class Constants {
     public static final double SpeakerTagHight = 9487; //mm
     public static final double AmpHight = 2000; //mm
     public static final double AmpTagHight = 2000; //mm
+
+    public static final int Team = 1;
   }
 
   public static class OperatorConstants {
     public static final int Player1Port = 0;
     public static final int Player2Port = 1;
 
-    public static final double kMove = 0.5;
-    public static final double kTrun = 0.5;
+    public static final double kMove = 1;
+    public static final double kTrun = 1
+    ;
 
     public static final double OriginRobotHeading = 0; //degrees
     public static final double DriverHeading = 0; //degrees

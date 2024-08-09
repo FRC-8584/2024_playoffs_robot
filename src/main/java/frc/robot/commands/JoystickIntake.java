@@ -18,9 +18,9 @@ public class JoystickIntake extends Command {
     @Override
     public void execute() {
         if(m_pov.get() == 180) 
-            m_intake.out();
+            m_intake.reverse();
         else if(m_pov.get() == 0)
-            m_intake.in();
+            m_intake.forword();
         else
             m_intake.stop();
     }

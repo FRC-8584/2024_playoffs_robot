@@ -13,11 +13,11 @@ public class Intake extends SubsystemBase {
 
   public Intake() {}
 
-  public void in(){
+  public void forword(){
     motor.set(Constants.MotorConstants.kIntakeSpeed);
   }
 
-  public void out(){
+  public void reverse(){
     motor.set(-Constants.MotorConstants.kIntakeSpeed);
   }
 
@@ -29,6 +29,6 @@ public class Intake extends SubsystemBase {
     motor.set(power);
   }
 
-  public Command IntakeOut = new StartEndCommand(()->this.out(), ()->this.stop(), this);
-  public Command IntakeIn = new StartEndCommand(()->this.in(), ()->this.stop(), this);
+  public Command IntakeOut = new StartEndCommand(()->this.reverse(), ()->this.stop(), this);
+  public Command IntakeIn = new StartEndCommand(()->this.forword(), ()->this.stop(), this);
 }

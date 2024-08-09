@@ -22,7 +22,7 @@ public class shoot extends Command {
   @Override
   public void execute() {
     m_shooter.shoot(m_Power.get());
-    m_transfer.shooterOut();
+    m_transfer.shooterForword();
   }
 
   @Override

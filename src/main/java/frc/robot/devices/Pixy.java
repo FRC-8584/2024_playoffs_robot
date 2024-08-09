@@ -8,7 +8,11 @@ public class Pixy {
   public static void init() {}
   
   public static int getTX(){
-    return pixy.getValue()[2];
+    return pixy.getValue()[1];
+  }
+
+  public static int getTA() {
+    return pixy.getValue()[0];
   }
 
   public static boolean isDetected() {

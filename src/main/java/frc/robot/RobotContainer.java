@@ -25,6 +25,9 @@ import frc.robot.commands.JoystickSwerve;
 import frc.robot.commands.GetNote;
 import frc.robot.commands.JoystickIntake;
 import frc.robot.commands.ShootSpeaker;
+import frc.robot.commands.omg.ControlIntake;
+import frc.robot.commands.omg.Move;
+import frc.robot.commands.omg.WallShoot;
 import frc.robot.commands.ShootAmp;
 import frc.robot.commands.JoystickShooter;
 import frc.robot.commands.JoystickShaft;
@@ -49,10 +52,10 @@ public class RobotContainer {
     );
 
     // shooter
-    shooter.setDefaultCommand(new JoystickShooter(shooter, ()->js2.getRawAxis(2), ()->js2.getRawAxis(3)).withInterruptBehavior(InterruptionBehavior.kCancelIncoming));
+    shooter.setDefaultCommand(new JoystickShooter(shooter, ()->js2.getRawAxis(2), ()->js2.getRawAxis(3)));
 
     // shaft
-    shaft.setDefaultCommand(new JoystickShaft(shaft, ()->js2.getY()).withInterruptBehavior(InterruptionBehavior.kCancelIncoming));
+    shaft.setDefaultCommand(new JoystickShaft(shaft, ()->js2.getY()));
 
     // intake
     intake.setDefaultCommand(new JoystickIntake(intake, ()->js2.getPOV()));
@@ -62,30 +65,65 @@ public class RobotContainer {
   }
 
   private void configureBindings() {
+    new JoystickButton(js1, 1).whileTrue(new ControlIntake(intake, transfer).withInterruptBehavior(InterruptionBehavior.kCancelIncoming));
+    new JoystickButton(js1, 2).whileTrue(new WallShoot(shooter, shaft, transfer).withInterruptBehavior(InterruptionBehavior.kCancelIncoming));
     // shoot speaker
-    new JoystickButton(js1, 5).whileTrue(new ShootSpeaker(shooter, transfer, shaft).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
+    // new JoystickButton(js1, 5).whileTrue(new ShootSpeaker(shooter, transfer, shaft).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
 
     // shoot AMP
-    new JoystickButton(js1, 6).whileTrue(new ShootAmp(shooter, transfer, shaft).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
+    // new JoystickButton(js1, 6).whileTrue(new ShootAmp(shooter, transfer, shaft).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
 
     // get note
-    new JoystickButton(js1, 1).whileTrue(new GetNote(intake, swerve, transfer, ()->js1.getX(), ()->js1.getY(), ()->js1.getRawAxis(4)).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
+    // new JoystickButton(js1, 1).whileTrue(new GetNote(intake, swerve, transfer, ()->js1.getRawAxis(4)).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
 
     // transfer
-    new JoystickButton(js2, 1).whileTrue(transfer.intakeIn.withInterruptBehavior(InterruptionBehavior.kCancelIncoming));
-    new JoystickButton(js2, 3).whileTrue(transfer.intakeOut.withInterruptBehavior(InterruptionBehavior.kCancelIncoming));
-    new JoystickButton(js2, 2).whileTrue(transfer.shooterOut.withInterruptBehavior(InterruptionBehavior.kCancelIncoming));
-    new JoystickButton(js2, 4).whileTrue(transfer.shooterIn.withInterruptBehavior(InterruptionBehavior.kCancelIncoming));
+    new JoystickButton(js2, 1).whileTrue(transfer.intakeForword.withInterruptBehavior(InterruptionBehavior.kCancelIncoming));
+    new JoystickButton(js2, 3).whileTrue(transfer.intakeReverse.withInterruptBehavior(InterruptionBehavior.kCancelIncoming));
+    new JoystickButton(js2, 2).whileTrue(transfer.shooterForword.withInterruptBehavior(InterruptionBehavior.kCancelIncoming));
+    new JoystickButton(js2, 4).whileTrue(transfer.shooterReverse.withInterruptBehavior(InterruptionBehavior.kCancelIncoming));
+  
+    // new JoystickButton(js1, 3).whileTrue(new ShootSpeaker(shooter, transfer, shaft));
   }
 
   private void initialize(){
-    Pixy.init();
-    Gyro.init();
-    Sensor.init();
-    LimeLight.init();
+    // Pixy.init();
+    // Gyro.init();
+    // Sensor.init();
+    // LimeLight.init();
   }
 
-  public Command getAutonomousCommand() {
-    return Commands.parallel();
+  public Command getAutonomousCommand1() {
+    return Commands.sequence(
+      new WallShoot(shooter, shaft, transfer).withTimeout(3),
+      new Move(swerve, 0, 0, 0).withTimeout(0.1));
+  }
+
+  public Command getAutonomousCommand2() {
+    return Commands.sequence(
+      new WallShoot(shooter, shaft, transfer).withTimeout(3),
+      new Move(swerve, 0, 0, 0).withTimeout(0.1),
+      Commands.parallel(
+        new Move(swerve, 0, 0, 0), 
+        new ControlIntake(intake, transfer)
+      ).withTimeout(2)
+    );
+  }
+
+  public Command getAutonomousCommand3() {
+    return Commands.sequence(
+      new WallShoot(shooter, shaft, transfer).withTimeout(3),
+      Commands.parallel(
+        new Move(swerve, 0, 0, 0), 
+        new ControlIntake(intake, transfer)
+      ).withTimeout(2)
+    );
+  }
+
+  public Command getAutonomousCommand4() {
+    return Commands.sequence(
+      new WallShoot(shooter, shaft, transfer).withTimeout(3.5),
+      new Move(swerve, 0, 1, -0.2).withTimeout(0.5),
+      new Move(swerve, 0, 1, 0).withTimeout(0.3)
+    );
   }
 }
