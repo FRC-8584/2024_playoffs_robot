@@ -6,7 +6,6 @@ import frc.robot.modules.SwerveModule;
 import frc.robot.utils.PID;
 import frc.robot.utils.Tools;
 import frc.robot.Constants;
-import frc.robot.devices.Gyro;
 
 public class Swerve extends SubsystemBase {
   /**********swerve motor modules**********/
@@ -17,8 +16,6 @@ public class Swerve extends SubsystemBase {
   private final SwerveModule rr;
 
   /**********variables**********/
-
-  private double robotHeading;
 
   /**********constants**********/
 
@@ -47,7 +44,6 @@ public class Swerve extends SubsystemBase {
     lr.update();
     rf.update();
     rr.update();
-    getRobotHeading();
   }
 
   /**
@@ -70,13 +66,6 @@ public class Swerve extends SubsystemBase {
 
       return;
     }
-
-    //convert the vector of driver's heading to the vector of robot's heading
-
-    // final double tempVector[] = convertHeading(x, y);
-
-    // x = tempVector[0];
-    // y = tempVector[1];
 
     x *= Constants.OperatorConstants.kMove;
     y *= Constants.OperatorConstants.kMove;
@@ -124,36 +113,5 @@ public class Swerve extends SubsystemBase {
     rr.setpoint(rr_speed, rr_degrees);
 		
     return;
-  }
-
-  /**
-   * Get robot heading.
-   * 
-   * @return robot heading (0 =< value < 360 degrees)
-   */
-  private void getRobotHeading() {
-    if(Gyro.isInitialized()){
-      final double temp = Gyro.getVector() + Constants.OperatorConstants.OriginRobotHeading;
-
-      robotHeading = temp >= 360 ? temp - 360 : temp;
-    }
-    else{
-      robotHeading = Constants.OperatorConstants.DriverHeading;
-    }
-  }
-
-  /**
-   * Change the vector of driver's heading to the vector of robot's heading.
-   * 
-   * @param x : vector x (driver heading)
-   * @param y : vector y (driver heading)
-   * 
-   * @return a vector {x, y} (robot heading)
-   */
-  private double[] convertHeading(double x, double y) {
-    return Tools.toVector(
-      Math.sqrt(x*x + y*y),
-      Tools.toDegrees(x, y) - (robotHeading - Constants.OperatorConstants.DriverHeading)
-    );//radius, angle
   }
 }

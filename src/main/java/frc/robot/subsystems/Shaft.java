@@ -13,8 +13,7 @@ public class Shaft extends SubsystemBase {
   private final CANSparkMax Lmotor = new CANSparkMax(Constants.MotorControllerID.LShaftID, MotorType.kBrushless);
   private final CANSparkMax Rmotor = new CANSparkMax(Constants.MotorControllerID.RShaftID, MotorType.kBrushless);
 
-  private final PID pid1 = new PID(0.05, 0, 0);
-  private final PID pid2 = new PID(0.7, 2 *1e-3, 0);
+  private final PID pid = new PID(0.7, 2 *1e-3, 0);
 
   private final double InitLEnc;
   private final double InitREnc;
@@ -35,15 +34,12 @@ public class Shaft extends SubsystemBase {
     SmartDashboard.putNumber("L Shaft A", LAngle);
     SmartDashboard.putNumber("R Shaft A", RAngle);
     
-    // double err = LAngle - RAngle;
-    // if(err > 3) {
-    //   Lmotor.set(-Tools.bounding(pid1.calculate(-err / Constants.MechanicalConstants.ShaftAngleRange)));
-    //   Rmotor.set(Tools.bounding(pid1.calculate(err / Constants.MechanicalConstants.ShaftAngleRange)));
-    // }
-    // else if(err < -3){
-    //   Lmotor.set(-Tools.bounding(pid1.calculate(err / Constants.MechanicalConstants.ShaftAngleRange)));
-    //   Rmotor.set(Tools.bounding(pid1.calculate(-err / Constants.MechanicalConstants.ShaftAngleRange)));
-    // }
+    double err = LAngle - RAngle;
+    double Lpower = err / 2 * 0.5; // err / 2 assortion, * 0.5 output ratio 
+    double Rpower = -err / 2 * 0.5;
+
+    Lmotor.set(Lpower);
+    Rmotor.set(Rpower);
   }
 
   public void setPosition(double degrees) {
@@ -51,8 +47,8 @@ public class Shaft extends SubsystemBase {
     double Lerr = degrees - LAngle;
     double Rerr = degrees - RAngle;
 
-    Lmotor.set(-Tools.bounding(pid2.calculate(Lerr / Constants.MechanicalConstants.ShaftAngleRange)));
-    Rmotor.set(Tools.bounding(pid2.calculate(Rerr / Constants.MechanicalConstants.ShaftAngleRange)));
+    Lmotor.set(-Tools.bounding(pid.calculate(Lerr / Constants.MechanicalConstants.ShaftAngleRange)));
+    Rmotor.set(Tools.bounding(pid.calculate(Rerr / Constants.MechanicalConstants.ShaftAngleRange)));
   }
 
   public void setPower(double force) {

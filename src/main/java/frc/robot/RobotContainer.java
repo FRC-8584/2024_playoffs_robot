@@ -6,11 +6,6 @@ import edu.wpi.first.wpilibj2.command.Command.InterruptionBehavior;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
 
-import frc.robot.devices.Gyro;
-import frc.robot.devices.LimeLight;
-import frc.robot.devices.Pixy;
-import frc.robot.devices.Sensor;
-
 /*** subsystems ***/
 
 import frc.robot.subsystems.Swerve;
@@ -22,13 +17,10 @@ import frc.robot.subsystems.Shaft;
 /*** commands ***/
 
 import frc.robot.commands.JoystickSwerve;
-import frc.robot.commands.GetNote;
+import frc.robot.commands.Move;
+import frc.robot.commands.WallShoot;
 import frc.robot.commands.JoystickIntake;
-import frc.robot.commands.ShootSpeaker;
-import frc.robot.commands.omg.ControlIntake;
-import frc.robot.commands.omg.Move;
-import frc.robot.commands.omg.WallShoot;
-import frc.robot.commands.ShootAmp;
+import frc.robot.commands.GetNote;
 import frc.robot.commands.JoystickShooter;
 import frc.robot.commands.JoystickShaft;
 
@@ -43,6 +35,11 @@ public class RobotContainer {
   private final Joystick js2 = new Joystick(Constants.OperatorConstants.Player2Port);
 
   public RobotContainer() {
+    player1CommandList();
+    player2CommandList();
+  }
+
+  private void player1CommandList() {
     // swerve
     swerve.setDefaultCommand(new JoystickSwerve(
       swerve, 
@@ -51,51 +48,33 @@ public class RobotContainer {
       ()->js1.getRawAxis(4))
     );
 
-    // shooter
-    shooter.setDefaultCommand(new JoystickShooter(shooter, ()->js2.getRawAxis(2), ()->js2.getRawAxis(3)));
+    // get note
+    new JoystickButton(js1, 1).whileTrue(new GetNote(intake, transfer).withInterruptBehavior(InterruptionBehavior.kCancelIncoming));
 
-    // shaft
-    shaft.setDefaultCommand(new JoystickShaft(shaft, ()->js2.getY()));
-
-    // intake
-    intake.setDefaultCommand(new JoystickIntake(intake, ()->js2.getPOV()));
-
-    initialize();
-    configureBindings();
+    // shoot note
+    new JoystickButton(js1, 2).whileTrue(new WallShoot(shooter, shaft, transfer).withInterruptBehavior(InterruptionBehavior.kCancelIncoming));
   }
 
-  private void configureBindings() {
-    new JoystickButton(js1, 1).whileTrue(new ControlIntake(intake, transfer).withInterruptBehavior(InterruptionBehavior.kCancelIncoming));
-    new JoystickButton(js1, 2).whileTrue(new WallShoot(shooter, shaft, transfer).withInterruptBehavior(InterruptionBehavior.kCancelIncoming));
-    // shoot speaker
-    // new JoystickButton(js1, 5).whileTrue(new ShootSpeaker(shooter, transfer, shaft).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
-
-    // shoot AMP
-    // new JoystickButton(js1, 6).whileTrue(new ShootAmp(shooter, transfer, shaft).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
-
-    // get note
-    // new JoystickButton(js1, 1).whileTrue(new GetNote(intake, swerve, transfer, ()->js1.getRawAxis(4)).withInterruptBehavior(InterruptionBehavior.kCancelSelf));
+  private void player2CommandList() {
+    // intake
+    intake.setDefaultCommand(new JoystickIntake(intake, ()->js2.getPOV()));
 
     // transfer
     new JoystickButton(js2, 1).whileTrue(transfer.intakeForword.withInterruptBehavior(InterruptionBehavior.kCancelIncoming));
     new JoystickButton(js2, 3).whileTrue(transfer.intakeReverse.withInterruptBehavior(InterruptionBehavior.kCancelIncoming));
     new JoystickButton(js2, 2).whileTrue(transfer.shooterForword.withInterruptBehavior(InterruptionBehavior.kCancelIncoming));
     new JoystickButton(js2, 4).whileTrue(transfer.shooterReverse.withInterruptBehavior(InterruptionBehavior.kCancelIncoming));
-  
-    // new JoystickButton(js1, 3).whileTrue(new ShootSpeaker(shooter, transfer, shaft));
+
+    // shooter
+    shooter.setDefaultCommand(new JoystickShooter(shooter, ()->js2.getRawAxis(2), ()->js2.getRawAxis(3)));
+
+    // shaft
+    shaft.setDefaultCommand(new JoystickShaft(shaft, ()->js2.getY()));
   }
 
-  private void initialize(){
-    // Pixy.init();
-    // Gyro.init();
-    // Sensor.init();
-    // LimeLight.init();
-  }
-
-  public Command getAutonomousCommand1() {
+  public Command getAutoCommand() {
     return Commands.sequence(
-      new WallShoot(shooter, shaft, transfer).withTimeout(3),
-      new Move(swerve, 0, 0, 0).withTimeout(0.1));
+      new WallShoot(shooter, shaft, transfer).withTimeout(5));
   }
 
   public Command getAutonomousCommand2() {
@@ -104,7 +83,7 @@ public class RobotContainer {
       new Move(swerve, 0, 0, 0).withTimeout(0.1),
       Commands.parallel(
         new Move(swerve, 0, 0, 0), 
-        new ControlIntake(intake, transfer)
+        new GetNote(intake, transfer)
       ).withTimeout(2)
     );
   }
@@ -114,16 +93,15 @@ public class RobotContainer {
       new WallShoot(shooter, shaft, transfer).withTimeout(3),
       Commands.parallel(
         new Move(swerve, 0, 0, 0), 
-        new ControlIntake(intake, transfer)
+        new GetNote(intake, transfer)
       ).withTimeout(2)
     );
   }
 
   public Command getAutonomousCommand4() {
     return Commands.sequence(
-      new WallShoot(shooter, shaft, transfer).withTimeout(3.5),
-      new Move(swerve, 0, 1, -0.2).withTimeout(0.5),
-      new Move(swerve, 0, 1, 0).withTimeout(0.3)
+      new WallShoot(shooter, shaft, transfer).withTimeout(0.1),
+      new Move(swerve, 0, 1, 0).withTimeout(2.0)
     );
   }
 }
