@@ -20,6 +20,7 @@ import frc.robot.commands.JoystickSwerve;
 import frc.robot.commands.Move;
 import frc.robot.commands.WallShoot;
 import frc.robot.commands.JoystickIntake;
+import frc.robot.Constants.AutoActions;
 import frc.robot.commands.GetNote;
 import frc.robot.commands.JoystickShooter;
 import frc.robot.commands.JoystickShaft;
@@ -73,33 +74,19 @@ public class RobotContainer {
   }
 
   // shoot only
-  public Command getAutoCommand() {
-    return Commands.sequence(
-      new WallShoot(shooter, shaft, transfer).withTimeout(5)
-    );
-  }
+  public Command getAutonomousCommand(AutoActions action) {
+    switch (action) {
 
-  public Command getAutoCommand2() {
-    return new Move(swerve, 0, 1, 0).withTimeout(2.0);
-  }
+      // shoot only
+      case ShootOnly:
+        return Commands.sequence(
+          new WallShoot(shooter, shaft, transfer).withTimeout(5)
+        );
 
-  public Command getAutoCommand3() {
-    return Commands.sequence(
-      new WallShoot(shooter, shaft, transfer).withTimeout(3),
-      new Move(swerve, 0.1, 0.4, 0).withTimeout(0.3),
-      new Move(swerve, 0.5, 0, 1).withTimeout(0.3)
-    );
+      // none
+      default:
+        return null;
+    }
   }
-
-  public Command getAutonomousCommand3() {
-    return Commands.sequence(
-      new WallShoot(shooter, shaft, transfer).withTimeout(3),
-      Commands.parallel(
-        new Move(swerve, 0, 0, 0), 
-        new GetNote(intake, transfer)
-      ).withTimeout(2)
-    );
-  }
-
 
 }

@@ -89,4 +89,8 @@ public final class Constants {
     public static final int kTransferInputPort = 2;
     public static final int kTransferOutputPort = 3;
   }
+
+  public static enum AutoActions {
+    ShootOnly
+  }
 }
