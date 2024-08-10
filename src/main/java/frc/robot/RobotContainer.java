@@ -17,7 +17,6 @@ import frc.robot.subsystems.Shaft;
 /*** commands ***/
 
 import frc.robot.commands.JoystickSwerve;
-import frc.robot.commands.Move;
 import frc.robot.commands.WallShoot;
 import frc.robot.commands.JoystickIntake;
 import frc.robot.Constants.AutoActions;
