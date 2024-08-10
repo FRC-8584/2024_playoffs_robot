@@ -72,19 +72,22 @@ public class RobotContainer {
     shaft.setDefaultCommand(new JoystickShaft(shaft, ()->js2.getY()));
   }
 
+  // shoot only
   public Command getAutoCommand() {
     return Commands.sequence(
-      new WallShoot(shooter, shaft, transfer).withTimeout(5));
+      new WallShoot(shooter, shaft, transfer).withTimeout(5)
+    );
   }
 
-  public Command getAutonomousCommand2() {
+  public Command getAutoCommand2() {
+    return new Move(swerve, 0, 1, 0).withTimeout(2.0);
+  }
+
+  public Command getAutoCommand3() {
     return Commands.sequence(
       new WallShoot(shooter, shaft, transfer).withTimeout(3),
-      new Move(swerve, 0, 0, 0).withTimeout(0.1),
-      Commands.parallel(
-        new Move(swerve, 0, 0, 0), 
-        new GetNote(intake, transfer)
-      ).withTimeout(2)
+      new Move(swerve, 0.1, 0.4, 0).withTimeout(0.3),
+      new Move(swerve, 0.5, 0, 1).withTimeout(0.3)
     );
   }
 
@@ -98,10 +101,5 @@ public class RobotContainer {
     );
   }
 
-  public Command getAutonomousCommand4() {
-    return Commands.sequence(
-      new WallShoot(shooter, shaft, transfer).withTimeout(0.1),
-      new Move(swerve, 0, 1, 0).withTimeout(2.0)
-    );
-  }
+
 }

@@ -28,8 +28,8 @@ public class Transfer extends SubsystemBase {
   }
 
   public void shooterReverse() {
-    topMotor.set(Constants.MotorConstants.kTopTransferSpeed);
-    bottomMotor.set(Constants.MotorConstants.kBottomTransferSpeed);
+    topMotor.set(1);
+    bottomMotor.set(0.6);
   }
 
   public void shooterForword() {
